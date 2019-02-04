@@ -1,0 +1,43 @@
+{
+    "name": "terminal42/contao-shortlink",
+    "type": "contao-bundle",
+    "description": "",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/terminal42/contao-shortlink/issues",
+        "forum": "https://community.contao.org",
+        "source": "https://github.com/terminal42/contao-shortlink"
+    },
+    "authors": [
+        {
+            "name": "terminal42 gmbh",
+            "homepage": "https://www.terminal42.ch"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "contao/core-bundle": "4.7.x-dev",
+        "codefog/contao-haste": "^4.20",
+        "symfony/config": "^4.0",
+        "symfony/dependency-injection": "^4.0",
+        "symfony/http-kernel": "^4.0",
+        "symfony-cmf/routing": "^2.1",
+        "hashids/hashids": "^3.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "doctrine/orm": "^2.5",
+        "php-http/guzzle6-adapter": "^1.1"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Terminal42\\ShortlinkBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "Terminal42\\ShortLinkBundle\\ContaoManager\\Plugin"
+    }
+}
