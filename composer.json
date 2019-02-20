@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "contao/core-bundle": "4.7.x-dev",
+        "contao/core-bundle": "^4.7",
         "codefog/contao-haste": "^4.20",
         "symfony/config": "^4.0",
         "symfony/dependency-injection": "^4.0",
@@ -38,6 +38,6 @@
         }
     },
     "extra": {
-        "contao-manager-plugin": "Terminal42\\ShortLinkBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Terminal42\\ShortlinkBundle\\ContaoManager\\Plugin"
     }
 }
