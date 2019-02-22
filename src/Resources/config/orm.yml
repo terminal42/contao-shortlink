@@ -1,0 +1,7 @@
+
+doctrine:
+    orm:
+        mappings:
+            Terminal42ShortlinkBundle:
+                type: annotation
+                dir: Entity
