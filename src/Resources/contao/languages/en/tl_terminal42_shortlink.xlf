@@ -20,7 +20,6 @@
             <trans-unit id="tl_terminal42_shortlink.published.1">
                 <source>Click here if this shortlink should be enabled.</source>
             </trans-unit>
-
             <trans-unit id="tl_terminal42_shortlink.url_legend">
                 <source>URL configuration</source>
             </trans-unit>
