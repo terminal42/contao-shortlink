@@ -23,7 +23,7 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
 
         $loader->load('services.yml');
 
-        $container->setParameter('terminal42_shortlink.base_url', $config['base_url']);
+        $container->setParameter('terminal42_shortlink.host', $config['host']);
         $container->setParameter('terminal42_shortlink.salt', $config['salt']);
     }
 }

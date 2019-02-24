@@ -11,7 +11,8 @@ services:
         class: Terminal42\ShortlinkBundle\EventListener\DataContainer\HashidAliasListener
         arguments:
             - '@terminal42_shortlink.hashids'
-            - '%terminal42_shortlink.base_url%'
+            - '@router.request_context'
+            - '%terminal42_shortlink.host%'
         tags:
             - { name: contao.callback, table: tl_terminal42_shortlink, target: list.label.label }
 
@@ -50,7 +51,7 @@ services:
         arguments:
             - '@terminal42_shortlink.repository.shortlink'
             - '@terminal42_shortlink.hashids'
-            - '%terminal42_shortlink.base_url%'
+            - '%terminal42_shortlink.host%'
 
     terminal42_shortlink.routing.route_generator:
         class: Symfony\Cmf\Component\Routing\ProviderBasedGenerator

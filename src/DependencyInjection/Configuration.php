@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('base_url')->cannotBeEmpty()->end()
+                ->scalarNode('host')->defaultValue('')->end()
                 ->scalarNode('salt')->defaultValue('terminal42_shortlink')->end()
             ->end()
         ;

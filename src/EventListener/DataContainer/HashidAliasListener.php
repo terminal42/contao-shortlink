@@ -6,6 +6,7 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
 use Contao\DataContainer;
 use Hashids\Hashids;
+use Symfony\Component\Routing\RequestContext;
 
 class HashidAliasListener
 {
@@ -14,14 +15,19 @@ class HashidAliasListener
      */
     private $hashids;
     /**
+     * @var RequestContext
+     */
+    private $requestContext;
+    /**
      * @var string
      */
-    private $baseUrl;
+    private $host;
 
-    public function __construct(Hashids $hashids, string $baseUrl)
+    public function __construct(Hashids $hashids, RequestContext $requestContext, string $host)
     {
         $this->hashids = $hashids;
-        $this->baseUrl = $baseUrl;
+        $this->requestContext = $requestContext;
+        $this->host = $host;
     }
 
     public function onLabelCallback(array $row, string $label, DataContainer $dc, array $columns)
@@ -32,8 +38,8 @@ class HashidAliasListener
 
         $columns[0] = sprintf(
             '<a href="%s" target="_blank">%s</a>',
-            $this->baseUrl.'/'.$columns[0],
-            $this->baseUrl.'/'.$columns[0]
+            ($this->host ? '//'.$this->host : '').'/'.$columns[0],
+            $this->host ?: $this->requestContext->getHost().'/'.$columns[0]
         );
 
         return $columns;

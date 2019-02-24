@@ -28,11 +28,11 @@ class RouteProvider implements RouteProviderInterface
      */
     private $host;
 
-    public function __construct(ShortlinkRepository $repository, Hashids $hashids, string $baseUrl)
+    public function __construct(ShortlinkRepository $repository, Hashids $hashids, string $host)
     {
         $this->repository = $repository;
         $this->hashids = $hashids;
-        $this->host = parse_url($baseUrl, PHP_URL_HOST);
+        $this->host = $host;
     }
 
     /**
@@ -48,7 +48,10 @@ class RouteProvider implements RouteProviderInterface
             $route = new Route($link->getPath($this->hashids));
             $route->setDefault(RouteObjectInterface::CONTROLLER_NAME, 'terminal42_shortlink.controller.shortlink');
             $route->setDefault(RouteObjectInterface::CONTENT_OBJECT, $link);
-            $route->setHost($this->host);
+
+            if ($this->host) {
+                $route->setHost($this->host);
+            }
 
             $collection->add($link->getRouteKey(), $route);
         }
