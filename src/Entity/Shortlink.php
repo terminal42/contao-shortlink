@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Hashids\Hashids;
 
@@ -11,7 +13,7 @@ use Hashids\Hashids;
  * @ORM\Table(
  *     name="tl_terminal42_shortlink",
  *     indexes={
- *         @ORM\Index(name="published", columns={"published"})
+ *         @ORM\Index(name="published", columns={"published","alias"})
  *     }
  * )
  * @ORM\Entity(repositoryClass="Terminal42\ShortlinkBundle\Repository\ShortlinkRepository")
@@ -55,6 +57,20 @@ class Shortlink
      */
     private $published;
 
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", cascade={"persist"})
+     */
+    private $logs;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->logs = new ArrayCollection();
+    }
+
     public function getPath(Hashids $hashids)
     {
         if ($this->alias) {
@@ -72,5 +88,13 @@ class Shortlink
     public function getTarget(): string
     {
         return $this->target;
+    }
+
+    public function addLog(ShortlinkLog $log): self
+    {
+        $this->logs->add($log);
+        $log->setShortlink($this);
+
+        return $this;
     }
 }

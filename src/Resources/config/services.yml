@@ -1,7 +1,11 @@
 services:
     terminal42_shortlink.controller.shortlink:
         class: Terminal42\ShortlinkBundle\Controller\ShortlinkController
-        tags: [{ name: controller.service_arguments }]
+        arguments:
+            - '@doctrine'
+            - '%terminal42_shortlink.log_ip%'
+        tags:
+            - { name: controller.service_arguments }
 
     terminal42_shortlink.hashids:
         class: Hashids\Hashids

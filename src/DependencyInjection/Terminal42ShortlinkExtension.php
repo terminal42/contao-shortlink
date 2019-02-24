@@ -25,5 +25,6 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
 
         $container->setParameter('terminal42_shortlink.host', $config['host']);
         $container->setParameter('terminal42_shortlink.salt', $config['salt']);
+        $container->setParameter('terminal42_shortlink.log_ip', $config['log_ip']);
     }
 }
