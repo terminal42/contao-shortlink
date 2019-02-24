@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terminal42\ShortlinkBundle\Routing;
 
+use Hashids\Hashids;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Cmf\Component\Routing\RouteProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +19,20 @@ class RouteProvider implements RouteProviderInterface
      * @var ShortlinkRepository
      */
     private $repository;
+    /**
+     * @var Hashids
+     */
+    private $hashids;
+    /**
+     * @var string
+     */
+    private $host;
 
-    public function __construct(ShortlinkRepository $repository)
+    public function __construct(ShortlinkRepository $repository, Hashids $hashids, string $baseUrl)
     {
         $this->repository = $repository;
+        $this->hashids = $hashids;
+        $this->host = parse_url($baseUrl, PHP_URL_HOST);
     }
 
     /**
@@ -32,9 +45,10 @@ class RouteProvider implements RouteProviderInterface
         $collection = new RouteCollection();
 
         foreach ($links as $link) {
-            $route = new Route($link->getPath());
+            $route = new Route($link->getPath($this->hashids));
             $route->setDefault(RouteObjectInterface::CONTROLLER_NAME, 'terminal42_shortlink.controller.shortlink');
             $route->setDefault(RouteObjectInterface::CONTENT_OBJECT, $link);
+            $route->setHost($this->host);
 
             $collection->add($link->getRouteKey(), $route);
         }

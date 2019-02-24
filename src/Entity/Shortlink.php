@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terminal42\ShortlinkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Hashids\Hashids;
-use Symfony\Cmf\Bundle\RoutingBundle\Model\Route;
 
 /**
  * @ORM\Table(
@@ -54,13 +55,11 @@ class Shortlink
      */
     private $published;
 
-    public function getPath()
+    public function getPath(Hashids $hashids)
     {
         if ($this->alias) {
             return '/'.$this->alias;
         }
-
-        $hashids = new Hashids('tl_terminal42_shortlink');
 
         return '/'.$hashids->encode($this->id);
     }
@@ -68,5 +67,10 @@ class Shortlink
     public function getRouteKey()
     {
         return 'tl_terminal42_shortlink.'.$this->id;
+    }
+
+    public function getTarget(): string
+    {
+        return $this->target;
     }
 }

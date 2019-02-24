@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terminal42\ShortlinkBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
-class Terminal42ShortlinkExtension extends Extension
+class Terminal42ShortlinkExtension extends ConfigurableExtension
 {
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function loadInternal(array $config, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
             $container,
@@ -20,5 +22,8 @@ class Terminal42ShortlinkExtension extends Extension
         );
 
         $loader->load('services.yml');
+
+        $container->setParameter('terminal42_shortlink.base_url', $config['base_url']);
+        $container->setParameter('terminal42_shortlink.salt', $config['salt']);
     }
 }

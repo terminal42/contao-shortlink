@@ -1,16 +1,29 @@
 services:
     terminal42_shortlink.controller.shortlink:
         class: Terminal42\ShortlinkBundle\Controller\ShortlinkController
+        tags: [{ name: controller.service_arguments }]
+
+    terminal42_shortlink.hashids:
+        class: Hashids\Hashids
+        arguments: ['%terminal42_shortlink.salt%']
+
+    terminal42_shortlink.listener.hashid_alias:
+        class: Terminal42\ShortlinkBundle\EventListener\DataContainer\HashidAliasListener
+        arguments:
+            - '@terminal42_shortlink.hashids'
+            - '%terminal42_shortlink.base_url%'
+        tags:
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: list.label.label }
 
     terminal42_shortlink.routing.router:
         class: Symfony\Cmf\Component\Routing\DynamicRouter
         arguments:
-            - "@router.request_context"
-            - "@terminal42_shortlink.routing.nested_matcher"
-            - "@terminal42_shortlink.routing.route_generator"
-            - ""
-            - "@event_dispatcher"
-            - "@terminal42_shortlink.routing.route_provider"
+            - '@router.request_context'
+            - '@terminal42_shortlink.routing.nested_matcher'
+            - '@terminal42_shortlink.routing.route_generator'
+            - ''
+            - '@event_dispatcher'
+            - '@terminal42_shortlink.routing.route_provider'
         tags:
             - { name: router, priority: 80 }
 
@@ -35,15 +48,19 @@ services:
     terminal42_shortlink.routing.route_provider:
         class: Terminal42\ShortlinkBundle\Routing\RouteProvider
         arguments:
-            - "@terminal42_shortlink.repository.shortlink"
+            - '@terminal42_shortlink.repository.shortlink'
+            - '@terminal42_shortlink.hashids'
+            - '%terminal42_shortlink.base_url%'
 
     terminal42_shortlink.routing.route_generator:
         class: Symfony\Cmf\Component\Routing\ProviderBasedGenerator
         arguments:
-            - "@terminal42_shortlink.routing.route_provider"
-            - "@logger"
+            - '@terminal42_shortlink.routing.route_provider'
+            - '@logger'
 
     terminal42_shortlink.repository.shortlink:
         class: Terminal42\ShortlinkBundle\Repository\ShortlinkRepository
         arguments:
-            - "@doctrine"
+            - '@doctrine'
+            - '@terminal42_shortlink.hashids'
+            - '@contao.security.token_checker'

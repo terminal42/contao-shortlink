@@ -19,14 +19,14 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
     (
         'sorting' => array
         (
-            'mode'                    => 2,
-            'fields'                  => array('id DESC'),
+            'mode'                    => 1,
+            'fields'                  => array('target DESC'),
             'flag'                    => 1,
-            'panelLayout'             => 'filter;sort,search,limit',
+            'panelLayout'             => 'filter;search,limit',
         ),
         'label' => array
         (
-            'fields'                  => array('id', 'target'),
+            'fields'                  => array('alias', 'target'),
             'showColumns'             => true,
         ),
         'global_operations' => array
@@ -65,7 +65,19 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
                 'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['toggle'],
                 'icon'                => 'visible.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-                'button_callback'     => array('tl_terminal42_shortlink', 'toggleIcon')
+                'haste_ajax_operation'  => [
+                    'field'     => 'published',
+                    'options'    => [
+                        [
+                            'value'     => '',
+                            'icon'      => 'invisible.gif'
+                        ],
+                        [
+                            'value'     => '1',
+                            'icon'      => 'visible.gif'
+                        ]
+                    ]
+                ]
             ),
             'show' => array
             (
@@ -91,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'maxlength'=>255, 'tl_class'=>'clr'),
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'dcaPicker'=>true, 'addWizardClass'=>false, 'tl_class'=>'clr'),
         ),
         'alias' => array
         (
@@ -99,7 +111,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('rgxp'=>'url', 'maxlength'=>128, 'tl_class'=>'w50'),
+            'eval'                    => array('rgxp'=>'url', 'unique'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
         ),
         'published' => array
         (

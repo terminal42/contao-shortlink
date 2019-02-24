@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terminal42\ShortlinkBundle\ContaoManager;
 
+use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
@@ -20,7 +23,10 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
             return [];
         }
 
-        return [new BundleConfig(Terminal42ShortlinkBundle::class)];
+        return [
+            BundleConfig::create(Terminal42ShortlinkBundle::class)
+                ->setLoadAfter([ContaoCoreBundle::class])
+        ];
     }
 
     /**
