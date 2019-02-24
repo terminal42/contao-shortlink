@@ -39,7 +39,7 @@ class HashidAliasListener
         $columns[0] = sprintf(
             '<a href="%s" target="_blank">%s</a>',
             ($this->host ? '//'.$this->host : '').'/'.$columns[0],
-            $this->host ?: $this->requestContext->getHost().'/'.$columns[0]
+            ($this->host ?: $this->requestContext->getHost()).'/'.$columns[0]
         );
 
         return $columns;
