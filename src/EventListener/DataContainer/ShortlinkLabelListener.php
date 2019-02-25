@@ -7,9 +7,15 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 use Contao\DataContainer;
 use Hashids\Hashids;
 use Symfony\Component\Routing\RequestContext;
+use Terminal42\ShortlinkBundle\Entity\Shortlink;
+use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 
-class HashidAliasListener
+class ShortlinkLabelListener
 {
+    /**
+     * @var ShortlinkRepository
+     */
+    private $repository;
     /**
      * @var Hashids
      */
@@ -23,8 +29,9 @@ class HashidAliasListener
      */
     private $host;
 
-    public function __construct(Hashids $hashids, RequestContext $requestContext, string $host)
+    public function __construct(ShortlinkRepository $repository, Hashids $hashids, RequestContext $requestContext, string $host)
     {
+        $this->repository = $repository;
         $this->hashids = $hashids;
         $this->requestContext = $requestContext;
         $this->host = $host;
@@ -32,6 +39,9 @@ class HashidAliasListener
 
     public function onLabelCallback(array $row, string $label, DataContainer $dc, array $columns)
     {
+        /** @var Shortlink $shortlink */
+        $shortlink = $this->repository->find($row['id']);
+
         if (!$columns[0]) {
             $columns[0] = $this->hashids->encode($row['id']);
         }
@@ -41,6 +51,8 @@ class HashidAliasListener
             ($this->host ? '//'.$this->host : '').'/'.$columns[0],
             ($this->host ?: $this->requestContext->getHost()).'/'.$columns[0]
         );
+
+        $columns[2] = $shortlink->countLog();
 
         return $columns;
     }

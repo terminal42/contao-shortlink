@@ -97,4 +97,9 @@ class Shortlink
 
         return $this;
     }
+
+    public function countLog(): int
+    {
+        return $this->logs->count();
+    }
 }

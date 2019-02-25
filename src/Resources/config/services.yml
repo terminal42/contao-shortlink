@@ -12,8 +12,9 @@ services:
         arguments: ['%terminal42_shortlink.salt%']
 
     terminal42_shortlink.listener.hashid_alias:
-        class: Terminal42\ShortlinkBundle\EventListener\DataContainer\HashidAliasListener
+        class: Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkLabelListener
         arguments:
+            - '@terminal42_shortlink.repository.shortlink'
             - '@terminal42_shortlink.hashids'
             - '@router.request_context'
             - '%terminal42_shortlink.host%'

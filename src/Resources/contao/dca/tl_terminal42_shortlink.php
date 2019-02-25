@@ -8,10 +8,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
     (
         'dataContainer'               => 'Table',
         'enableVersioning'            => true,
-        'onsubmit_callback' => array
-        (
-//            array('tl_terminal42_shortlink', 'storeDateAdded')
-        ),
     ),
 
     // List
@@ -26,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('alias', 'target'),
+            'fields'                  => array('alias', 'target', 'log'),
             'showColumns'             => true,
         ),
         'global_operations' => array
@@ -75,9 +71,9 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
                         [
                             'value'     => '1',
                             'icon'      => 'visible.gif'
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ),
             'show' => array
             (
@@ -119,6 +115,10 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
+        ),
+        'log' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['log'],
         ),
     ),
 );
