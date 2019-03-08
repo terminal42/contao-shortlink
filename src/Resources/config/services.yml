@@ -11,7 +11,7 @@ services:
         class: Hashids\Hashids
         arguments: ['%terminal42_shortlink.salt%']
 
-    terminal42_shortlink.listener.hashid_alias:
+    terminal42_shortlink.listener.dca_label:
         class: Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkLabelListener
         arguments:
             - '@terminal42_shortlink.repository.shortlink'
@@ -20,6 +20,17 @@ services:
             - '%terminal42_shortlink.host%'
         tags:
             - { name: contao.callback, table: tl_terminal42_shortlink, target: list.label.label }
+
+    terminal42_shortlink.listener.dca_permission:
+        class: Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkPermissionListener
+        arguments:
+            - '@security.token_storage'
+        tags:
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: config.onload }
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: list.operations.edit }
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: list.operations.copy }
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: list.operations.delete }
+            - { name: contao.callback, table: tl_terminal42_shortlink, target: list.operations.toggle }
 
     terminal42_shortlink.routing.router:
         class: Symfony\Cmf\Component\Routing\DynamicRouter
