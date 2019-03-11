@@ -6,7 +6,6 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
 use Contao\Backend;
 use Contao\BackendUser;
-use Contao\DataContainer;
 use Contao\Image;
 use Contao\StringUtil;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -33,20 +32,14 @@ class ShortlinkPermissionListener
 
         $GLOBALS['TL_DCA'][self::TABLE]['config']['closed'] = true;
         $GLOBALS['TL_DCA'][self::TABLE]['config']['notEditable'] = true;
-    }
+        $GLOBALS['TL_DCA'][self::TABLE]['config']['notDeletable'] = true;
+        $GLOBALS['TL_DCA'][self::TABLE]['config']['notCopyable'] = true;
 
-    public function onButtonCallback(array $row, ?string $href, ?string $label, ?string $title, ?string $icon, ?string $attributes): string
-    {
-        if (!$this->canEditFieldsOf(self::TABLE)) {
-            return '';
-        }
-
-        return sprintf(
-            '<a href="%s" title="%s"%s>%s</a> ',
-            Backend::addToUrl($href.'&amp;id='.$row['id']),
-            StringUtil::specialchars($title),
-            $attributes,
-            Image::getHtml($icon, $label)
+        unset(
+            $GLOBALS['TL_DCA'][self::TABLE]['list']['global_operations']['all'],
+            $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['edit'],
+            $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['copy'],
+            $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['delete']
         );
     }
 
