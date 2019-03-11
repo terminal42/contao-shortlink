@@ -35,7 +35,7 @@ class ShortlinkPermissionListener
         $GLOBALS['TL_DCA'][self::TABLE]['config']['notEditable'] = true;
     }
 
-    public function onButtonCallback(array $row, string $href, string $label, string $title, string $icon, string $attributes): string
+    public function onButtonCallback(array $row, ?string $href, ?string $label, ?string $title, ?string $icon, ?string $attributes): string
     {
         if ($this->canEditFieldsOf(self::TABLE)) {
             return '';
