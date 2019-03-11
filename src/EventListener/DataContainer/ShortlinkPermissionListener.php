@@ -37,7 +37,7 @@ class ShortlinkPermissionListener
 
     public function onButtonCallback(array $row, ?string $href, ?string $label, ?string $title, ?string $icon, ?string $attributes): string
     {
-        if ($this->canEditFieldsOf(self::TABLE)) {
+        if (!$this->canEditFieldsOf(self::TABLE)) {
             return '';
         }
 
