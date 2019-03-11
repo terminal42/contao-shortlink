@@ -44,7 +44,7 @@ class ShortlinkLog
 
     /**
      * @ORM\ManyToOne(targetEntity="Terminal42\ShortlinkBundle\Entity\Shortlink", inversedBy="logs")
-     * @ORM\JoinColumn(name="pid", referencedColumnName="id")
+     * @ORM\JoinColumn(name="pid", referencedColumnName="id", onDelete="CASCADE")
      */
     private $shortlink;
 

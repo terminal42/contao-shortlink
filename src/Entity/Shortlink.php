@@ -59,7 +59,7 @@ class Shortlink
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", cascade={"persist","delete"})
+     * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", cascade={"persist","remove"})
      */
     private $logs;
 
