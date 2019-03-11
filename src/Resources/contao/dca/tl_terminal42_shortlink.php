@@ -8,6 +8,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
     (
         'dataContainer'               => 'Table',
         'enableVersioning'            => true,
+        'ctable'                      => ['tl_terminal42_shortlink_log'],
     ),
 
     // List
