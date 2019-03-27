@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('alias', 'target', 'log'),
+            'fields'                  => array('alias', 'target', 'log', 'dateAdded'),
             'showColumns'             => true,
         ),
         'global_operations' => array
@@ -118,6 +118,14 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
+        ),
+        'dateAdded' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['MSC']['dateAdded'],
+            'default'                 => time(),
+            'sorting'                 => true,
+            'flag'                    => 6,
+            'eval'                    => array('rgxp'=>'datim', 'doNotCopy'=>true),
         ),
         'log' => array
         (

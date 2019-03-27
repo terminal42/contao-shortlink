@@ -58,6 +58,13 @@ class Shortlink
     private $published;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true, "default"=0})
+     */
+    private $dateAdded;
+
+    /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", cascade={"persist","remove"})
      */
