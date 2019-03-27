@@ -18,6 +18,7 @@
         "php": "^7.1",
         "contao/core-bundle": "^4.7",
         "codefog/contao-haste": "^4.20",
+        "doctrine/orm": "^2.5",
         "symfony/config": "^4.0",
         "symfony/dependency-injection": "^4.0",
         "symfony/http-kernel": "^4.0",
@@ -26,7 +27,6 @@
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
-        "doctrine/orm": "^2.5",
         "php-http/guzzle6-adapter": "^1.1"
     },
     "conflict": {
