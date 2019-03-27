@@ -88,7 +88,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{url_legend},target,alias;{publishing_legend},published',
+        'default'                     => '{url_legend},target,alias,name;{publishing_legend},published',
     ),
 
     // Fields
@@ -111,6 +111,15 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'search'                  => true,
             'inputType'               => 'text',
             'eval'                    => array('rgxp'=>'url', 'unique'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
+        ),
+        'name' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['name'],
+            'exclude'                 => true,
+            'sorting'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
         ),
         'published' => array
         (

@@ -48,6 +48,13 @@ class Shortlink
      *
      * @ORM\Column(type="string", length=255, nullable=false, options={"default"=""})
      */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false, options={"default"=""})
+     */
     private $target;
 
     /**
@@ -95,6 +102,11 @@ class Shortlink
     public function getTarget(): string
     {
         return $this->target;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     public function addLog(ShortlinkLog $log): self

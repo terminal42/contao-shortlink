@@ -14,6 +14,12 @@
             <trans-unit id="tl_terminal42_shortlink.alias.1">
                 <source>Optionally enter a custom alias for the shortlink.</source>
             </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.name.0">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.name.1">
+                <source>Please enter a name that will be used exclusively in the backend.</source>
+            </trans-unit>
             <trans-unit id="tl_terminal42_shortlink.published.0">
                 <source>Enable short link</source>
             </trans-unit>
