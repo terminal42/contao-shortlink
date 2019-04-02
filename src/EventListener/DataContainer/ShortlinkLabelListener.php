@@ -52,9 +52,11 @@ class ShortlinkLabelListener
             ($this->host ?: $this->requestContext->getHost()).'/'.$columns[0]
         );
 
-        if ($name = $shortlink->getName()) {
-            $columns[1] = $name . ' <span class="tl_gray">(' . $columns[1] . ')</span>';
-        }
+        $columns[1] = sprintf(
+            '<a href="%s" target="_blank">%s</a>',
+            $columns[1],
+            $shortlink->getName() ?: $columns[1]
+        );
 
         $columns[2] = $shortlink->countLog();
 
