@@ -83,4 +83,3 @@ services:
         arguments:
             - '@doctrine'
             - '@terminal42_shortlink.hashids'
-            - '@contao.security.token_checker'
