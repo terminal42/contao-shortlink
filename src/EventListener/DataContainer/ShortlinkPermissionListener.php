@@ -8,18 +8,18 @@ use Contao\Backend;
 use Contao\BackendUser;
 use Contao\Image;
 use Contao\StringUtil;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ShortlinkPermissionListener
 {
     private const TABLE = 'tl_terminal42_shortlink';
 
     /**
-     * @var TokenStorage
+     * @var TokenStorageInterface
      */
     private $tokenStorage;
 
-    public function __construct(TokenStorage $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
     }
