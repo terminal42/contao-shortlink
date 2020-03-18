@@ -2,6 +2,7 @@ services:
     terminal42_shortlink.controller.shortlink:
         class: Terminal42\ShortlinkBundle\Controller\ShortlinkController
         arguments:
+            - '@contao.framework'
             - '@doctrine'
             - '%terminal42_shortlink.log_ip%'
         tags:
