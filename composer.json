@@ -3,17 +3,22 @@
     "type": "contao-bundle",
     "description": "",
     "license": "MIT",
+    "authors": [{
+        "name": "terminal42 gmbh",
+        "homepage": "https://www.terminal42.ch"
+    }],
+    "funding": [{
+        "type": "github",
+        "url": "https://github.com/terminal42"
+    }, {
+        "type": "other",
+        "url": "https://ko-fi.com/terminal42"
+    }],
     "support": {
         "issues": "https://github.com/terminal42/contao-shortlink/issues",
         "forum": "https://community.contao.org",
         "source": "https://github.com/terminal42/contao-shortlink"
     },
-    "authors": [
-        {
-            "name": "terminal42 gmbh",
-            "homepage": "https://www.terminal42.ch"
-        }
-    ],
     "require": {
         "php": "^7.1",
         "contao/core-bundle": "^4.7",
