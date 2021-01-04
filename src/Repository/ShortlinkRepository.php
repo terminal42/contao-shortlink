@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Terminal42\ShortlinkBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Hashids\Hashids;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 
 class ShortlinkRepository extends ServiceEntityRepository
@@ -19,7 +19,7 @@ class ShortlinkRepository extends ServiceEntityRepository
     /**
      * Constructor.
      */
-    public function __construct(RegistryInterface $registry, Hashids $hashids)
+    public function __construct(ManagerRegistry $registry, Hashids $hashids)
     {
         parent::__construct($registry, Shortlink::class);
 
