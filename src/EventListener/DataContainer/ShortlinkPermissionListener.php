@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
-use Contao\Backend;
-use Contao\BackendUser;
-use Contao\Image;
-use Contao\StringUtil;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Symfony\Component\Security\Core\Security;
 
+/**
+ * @Callback(table="tl_terminal42_shortlink", target="config.onload")
+ */
 class ShortlinkPermissionListener
 {
     private const TABLE = 'tl_terminal42_shortlink';
 
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
+    private Security $security;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(Security $security)
     {
-        $this->tokenStorage = $tokenStorage;
+        $this->security = $security;
     }
 
-    public function onLoadCallback(): void
+    public function __invoke(): void
     {
-        if ($this->canEditFieldsOf(self::TABLE)) {
+        if ($this->security->isGranted('contao_user.can_edit_fields', self::TABLE)) {
             return;
         }
 
@@ -41,17 +38,5 @@ class ShortlinkPermissionListener
             $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['copy'],
             $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['delete']
         );
-    }
-
-    private function canEditFieldsOf(string $table)
-    {
-        $token = $this->tokenStorage->getToken();
-        $user = $token ? $token->getUser() : null;
-
-        if (!$user instanceof BackendUser) {
-            return false;
-        }
-
-        return $user->canEditFieldsOf($table);
     }
 }

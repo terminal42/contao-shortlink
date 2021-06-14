@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Terminal42\ShortlinkBundle\Controller\ShortlinkController;
 use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 
 class RouteProvider implements RouteProviderInterface
@@ -46,7 +47,7 @@ class RouteProvider implements RouteProviderInterface
 
         foreach ($links as $link) {
             $route = new Route($link->getPath($this->hashids));
-            $route->setDefault(RouteObjectInterface::CONTROLLER_NAME, 'terminal42_shortlink.controller.shortlink');
+            $route->setDefault(RouteObjectInterface::CONTROLLER_NAME, ShortlinkController::class);
             $route->setDefault(RouteObjectInterface::CONTENT_OBJECT, $link);
 
             if ($this->host) {

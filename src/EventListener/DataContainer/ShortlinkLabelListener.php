@@ -4,30 +4,22 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
+use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use Hashids\Hashids;
 use Symfony\Component\Routing\RequestContext;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 
+/**
+ * @Callback(table="tl_terminal42_shortlink", target="list.label.label")
+ */
 class ShortlinkLabelListener
 {
-    /**
-     * @var ShortlinkRepository
-     */
-    private $repository;
-    /**
-     * @var Hashids
-     */
-    private $hashids;
-    /**
-     * @var RequestContext
-     */
-    private $requestContext;
-    /**
-     * @var string
-     */
-    private $host;
+    private ShortlinkRepository $repository;
+    private Hashids $hashids;
+    private RequestContext $requestContext;
+    private string $host;
 
     public function __construct(ShortlinkRepository $repository, Hashids $hashids, RequestContext $requestContext, string $host)
     {
@@ -37,7 +29,7 @@ class ShortlinkLabelListener
         $this->host = $host;
     }
 
-    public function onLabelCallback(array $row, string $label, DataContainer $dc, array $columns)
+    public function __invoke(array $row, string $label, DataContainer $dc, array $columns)
     {
         /** @var Shortlink $shortlink */
         $shortlink = $this->repository->find($row['id']);

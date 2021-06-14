@@ -15,18 +15,9 @@ use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
 
 class ShortlinkController
 {
-    /**
-     * @var Registry
-     */
-    private $doctrine;
-    /**
-     * @var bool
-     */
-    private $logIp;
-    /**
-     * @var ContaoFramework
-     */
-    private $framework;
+    private Registry $doctrine;
+    private bool $logIp;
+    private ContaoFramework $framework;
 
     public function __construct(ContaoFramework $framework, Registry $doctrine, bool $logIp)
     {

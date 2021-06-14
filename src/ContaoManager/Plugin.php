@@ -19,10 +19,6 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
      */
     public function getBundles(ParserInterface $parser)
     {
-        if (!class_exists(\Doctrine\ORM\Version::class)) {
-            return [];
-        }
-
         return [
             BundleConfig::create(Terminal42ShortlinkBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
@@ -34,6 +30,6 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
      */
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
-        $loader->load(__DIR__.'/../Resources/config/orm.yml');
+        $loader->load(__DIR__.'/../../config/orm.yml');
     }
 }

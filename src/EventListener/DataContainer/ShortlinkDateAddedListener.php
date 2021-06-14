@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
+use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use Doctrine\DBAL\Connection;
 
+/**
+ * @Callback(table="tl_terminal42_shortlink", target="config.onsubmit")
+ */
 class ShortlinkDateAddedListener
 {
     private const TABLE = 'tl_terminal42_shortlink';
@@ -21,7 +25,7 @@ class ShortlinkDateAddedListener
         $this->connection = $connection;
     }
 
-    public function onSubmitCallback($dc): void
+    public function __invoke($dc): void
     {
         // Front end call
         if (!$dc instanceof DataContainer) {
