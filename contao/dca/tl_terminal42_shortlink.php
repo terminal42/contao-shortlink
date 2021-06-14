@@ -30,7 +30,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         (
             'all' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
                 'href'                => 'act=select',
                 'class'               => 'header_edit_all',
                 'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
@@ -40,28 +39,23 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.svg'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['copy'],
                 'href'                => 'act=copy',
                 'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.svg',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'toggle' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['toggle'],
                 'icon'                => 'visible.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
                 'haste_ajax_operation'  => [
                     'field'     => 'published',
                     'options'    => [
@@ -78,7 +72,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.svg'
             ),
@@ -96,7 +89,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
     (
         'target' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['target'],
             'exclude'                 => true,
             'sorting'                 => true,
             'search'                  => true,
@@ -105,7 +97,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         ),
         'alias' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['alias'],
             'exclude'                 => true,
             'sorting'                 => true,
             'search'                  => true,
@@ -114,7 +105,6 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         ),
         'name' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['name'],
             'exclude'                 => true,
             'sorting'                 => true,
             'search'                  => true,
@@ -123,14 +113,12 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
         ),
         'published' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_terminal42_shortlink']['published'],
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
         ),
         'dateAdded' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['MSC']['dateAdded'],
             'default'                 => time(),
             'sorting'                 => true,
             'flag'                    => 6,

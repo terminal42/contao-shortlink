@@ -3,37 +3,35 @@
     "type": "contao-bundle",
     "description": "",
     "license": "MIT",
-    "authors": [{
-        "name": "terminal42 gmbh",
-        "homepage": "https://www.terminal42.ch"
-    }],
-    "funding": [{
-        "type": "github",
-        "url": "https://github.com/terminal42"
-    }, {
-        "type": "other",
-        "url": "https://ko-fi.com/terminal42"
-    }],
+    "authors": [
+        {
+            "name": "terminal42 gmbh",
+            "homepage": "https://www.terminal42.ch"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/terminal42"
+        },
+        {
+            "type": "other",
+            "url": "https://ko-fi.com/terminal42"
+        }
+    ],
     "support": {
         "issues": "https://github.com/terminal42/contao-shortlink/issues",
         "forum": "https://community.contao.org",
         "source": "https://github.com/terminal42/contao-shortlink"
     },
     "require": {
-        "php": "^7.1",
-        "contao/core-bundle": "^4.7",
+        "php": "^7.4 || ^8.0",
+        "contao/core-bundle": "^4.9",
         "codefog/contao-haste": "^4.20",
-        "doctrine/dbal": "^2.8",
-        "doctrine/orm": "^2.5",
-        "symfony/config": "^4.0",
-        "symfony/dependency-injection": "^4.0",
-        "symfony/http-kernel": "^4.0",
-        "symfony-cmf/routing": "^2.1",
         "hashids/hashids": "^3.0"
     },
     "require-dev": {
-        "contao/manager-plugin": "^2.0",
-        "php-http/guzzle6-adapter": "^1.1"
+        "contao/manager-plugin": "^2.0"
     },
     "conflict": {
         "contao/manager-plugin": "<2.0 || >=3.0"
