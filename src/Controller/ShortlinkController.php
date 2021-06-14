@@ -59,10 +59,16 @@ class ShortlinkController
     {
         $target = $shortlink->getTarget();
 
+        if (false === strpos($target, '{{')) {
+            return $target;
+        }
+
         $this->framework->initialize(true);
 
         /** @var InsertTags $insertTags */
         $insertTags = $this->framework->createInstance(InsertTags::class);
+
+        $target = str_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
 
         return $insertTags->replace($target);
     }
