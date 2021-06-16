@@ -16,7 +16,7 @@ services:
 
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkPermissionListener:
         arguments:
-            - '@security.helper'
+            - '@security.token_storage'
 
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkDateAddedListener:
         arguments:
