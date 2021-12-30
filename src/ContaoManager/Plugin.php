@@ -30,6 +30,6 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
      */
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
-        $loader->load(__DIR__.'/../../config/orm.yml');
+        $loader->load(__DIR__.'/../../config/config.yml');
     }
 }

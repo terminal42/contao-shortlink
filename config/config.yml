@@ -4,4 +4,4 @@ doctrine:
         mappings:
             Terminal42ShortlinkBundle:
                 type: annotation
-                dir: Entity
+                dir: src/Entity
