@@ -3,5 +3,6 @@ doctrine:
     orm:
         mappings:
             Terminal42ShortlinkBundle:
+                is_bundle: true
                 type: annotation
-                dir: src/Entity
+                dir: Entity
