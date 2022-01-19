@@ -85,6 +85,11 @@ class Shortlink
         $this->logs = new ArrayCollection();
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getPath(Hashids $hashids)
     {
         if ($this->alias) {

@@ -10,6 +10,7 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
 
@@ -37,8 +38,17 @@ class ShortlinkController
         $this->doctrine->getManager()->persist($_content);
         $this->doctrine->getManager()->flush();
 
+        $redirectUrl = $this->getRedirectUrl($_content);
+
+        // Target URL (probably from link_:: insert tag) no longer exists
+        if (empty($redirectUrl)) {
+            throw new NotFoundHttpException(
+                sprintf('Redirect URL for shortlink ID %s is empty.', $_content->getId())
+            );
+        }
+
         return new RedirectResponse(
-            $this->getRedirectUrl($_content),
+            $redirectUrl,
             Response::HTTP_FOUND,
             [
                 'Cache-Control' => 'no-cache',
