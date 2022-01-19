@@ -27,6 +27,8 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
+        "composer-runtime-api": "^2.0",
+        "composer/semver": "*",
         "contao/core-bundle": "^4.9",
         "codefog/contao-haste": "^4.20",
         "hashids/hashids": "^3.0 || ^4.1"
