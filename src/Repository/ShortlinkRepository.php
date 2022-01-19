@@ -27,7 +27,7 @@ class ShortlinkRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Shortlink[]
+     * @return array<Shortlink>
      */
     public function findRouteCandidatesByAlias(string $alias)
     {
@@ -36,7 +36,7 @@ class ShortlinkRepository extends ServiceEntityRepository
         return $this->getEntityManager()
             ->createQuery(/** @lang DQL */"
                 SELECT sl 
-                FROM Terminal42\ShortlinkBundle\Entity\Shortlink sl 
+                FROM Terminal42\\ShortlinkBundle\\Entity\\Shortlink sl 
                 WHERE (
                         sl.alias=:alias
                         OR (sl.alias='' AND sl.id=:id)
@@ -45,6 +45,7 @@ class ShortlinkRepository extends ServiceEntityRepository
             ")
             ->setParameter('alias', $alias)
             ->setParameter('id', $ids[0] ?? 0)
-            ->getResult();
+            ->getResult()
+        ;
     }
 }

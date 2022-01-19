@@ -21,14 +21,14 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
     {
         return [
             BundleConfig::create(Terminal42ShortlinkBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class])
+                ->setLoadAfter([ContaoCoreBundle::class]),
         ];
     }
 
     /**
      * Allows a plugin to load container configuration.
      */
-    public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
+    public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
     {
         $loader->load(__DIR__.'/../../config/config.yml');
     }

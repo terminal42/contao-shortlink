@@ -14,7 +14,7 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
     /**
      * {@inheritdoc}
      */
-    public function loadInternal(array $config, ContainerBuilder $container)
+    public function loadInternal(array $config, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(
             $container,

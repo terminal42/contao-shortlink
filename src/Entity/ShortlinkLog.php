@@ -51,7 +51,6 @@ class ShortlinkLog
     /**
      * Constructor.
      *
-     * @param string $browser
      * @param string $ip
      */
     public function __construct(string $browser, ?string $ip)
@@ -61,7 +60,7 @@ class ShortlinkLog
         $this->ip = $ip;
     }
 
-    public function setShortlink(Shortlink $shortlink)
+    public function setShortlink(Shortlink $shortlink): void
     {
         $this->shortlink = $shortlink;
     }
