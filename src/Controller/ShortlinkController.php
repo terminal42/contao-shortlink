@@ -42,9 +42,7 @@ class ShortlinkController
 
         // Target URL (probably from link_:: insert tag) no longer exists
         if (empty($redirectUrl)) {
-            throw new NotFoundHttpException(
-                sprintf('Redirect URL for shortlink ID %s is empty.', $_content->getId())
-            );
+            throw new NotFoundHttpException(sprintf('Redirect URL for shortlink ID %s is empty.', $_content->getId()));
         }
 
         return new RedirectResponse(

@@ -33,21 +33,23 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
      */
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
     {
-        $loader->load(function (ContainerBuilder $container) {
-            $isNew = InstalledVersions::satisfies(new VersionParser(), 'symfony/doctrine-bridge', '^5.4');
-            $bundleDir = $isNew ? 'src/Entity' : 'Entity';
+        $loader->load(
+            static function (ContainerBuilder $container): void {
+                $isNew = InstalledVersions::satisfies(new VersionParser(), 'symfony/doctrine-bridge', '^5.4');
+                $bundleDir = $isNew ? 'src/Entity' : 'Entity';
 
-            $container->loadFromExtension('doctrine', [
-                'orm' => [
-                    'mappings' => [
-                        'Terminal42ShortlinkBundle' => [
-                            'is_bundle' => true,
-                            'type' => 'annotation',
-                            'dir' => $bundleDir
-                        ]
-                    ]
-                ]
-            ]);
-        });
+                $container->loadFromExtension('doctrine', [
+                    'orm' => [
+                        'mappings' => [
+                            'Terminal42ShortlinkBundle' => [
+                                'is_bundle' => true,
+                                'type' => 'annotation',
+                                'dir' => $bundleDir,
+                            ],
+                        ],
+                    ],
+                ]);
+            }
+        );
     }
 }

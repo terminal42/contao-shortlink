@@ -16,9 +16,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('host')->defaultValue('')->end()
-            ->scalarNode('salt')->defaultValue('terminal42_shortlink')->end()
-            ->booleanNode('log_ip')->defaultFalse()->end()
+                ->scalarNode('host')->defaultValue('')->end()
+                ->scalarNode('salt')->defaultValue('terminal42_shortlink')->end()
+                ->booleanNode('log_ip')->defaultFalse()->end()
             ->end()
         ;
 
