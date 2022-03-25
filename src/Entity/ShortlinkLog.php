@@ -31,7 +31,7 @@ class ShortlinkLog
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="text", nullable=true, length=Doctrine\DBAL\Platforms\MySqlPlatform::LENGTH_LIMIT_TEXT)
      */
     private $browser;
 
