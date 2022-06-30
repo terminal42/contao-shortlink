@@ -9,7 +9,7 @@ services:
 
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkLabelListener:
         arguments:
-            - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
+            - '@database_connection'
             - '@terminal42_shortlink.hashids'
             - '@router.request_context'
             - '%terminal42_shortlink.host%'
