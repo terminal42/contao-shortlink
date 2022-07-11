@@ -61,6 +61,6 @@ class ShortlinkLabelListener
             );
         }
 
-        return $this->counts[$id] ?? 0;
+        return (int) ($this->counts[$id] ?? 0);
     }
 }
