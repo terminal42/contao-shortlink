@@ -7,8 +7,7 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\DataContainer;
 use Doctrine\DBAL\Connection;
-use Hashids\Hashids;
-use Symfony\Component\Routing\RequestContext;
+use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 /**
  * @Callback(table="tl_terminal42_shortlink", target="list.label.label")
@@ -16,31 +15,21 @@ use Symfony\Component\Routing\RequestContext;
 class ShortlinkLabelListener
 {
     private Connection $connection;
-    private Hashids $hashids;
-    private RequestContext $requestContext;
-    private string $host;
+    private ShortlinkGenerator $generator;
 
     private ?array $counts = null;
 
-    public function __construct(Connection $connection, Hashids $hashids, RequestContext $requestContext, string $host)
+    public function __construct(Connection $connection, ShortlinkGenerator $generator)
     {
         $this->connection = $connection;
-        $this->hashids = $hashids;
-        $this->requestContext = $requestContext;
-        $this->host = $host;
+        $this->generator = $generator;
     }
 
     public function __invoke(array $row, string $label, DataContainer $dc, array $columns)
     {
-        if (!$columns[0]) {
-            $columns[0] = $this->hashids->encode($row['id']);
-        }
+        $url = $this->generator->generateFromArray($row);
 
-        $columns[0] = sprintf(
-            '<a href="%s" target="_blank">%s</a>',
-            ($this->host ? '//'.$this->host : '').'/'.$columns[0],
-            ($this->host ?: $this->requestContext->getHost()).'/'.$columns[0]
-        );
+        $columns[0] = sprintf('<a href="//%s" target="_blank">%s</a>', $url, $url);
 
         $columns[1] = sprintf(
             '<a href="%s" target="_blank">%s</a>',
