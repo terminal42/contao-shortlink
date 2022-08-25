@@ -27,7 +27,7 @@ class ShortlinkLabelListener
 
     public function __invoke(array $row, string $label, DataContainer $dc, array $columns)
     {
-        $url = $this->generator->generateFromArray($row);
+        $url = $this->generator->generate((int) $row['id'], $row['alias'] ?? null);
 
         $columns[0] = sprintf('<a href="//%s" target="_blank">%s</a>', $url, $url);
 

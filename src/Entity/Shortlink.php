@@ -90,8 +90,15 @@ class Shortlink
         return $this->id;
     }
 
+    public function getAlias(): string
+    {
+        return $this->alias;
+    }
+
     public function getPath(Hashids $hashids)
     {
+        trigger_deprecation('terminal42/core-shortlink', '1.1', 'Using getPath() has been deprecated and will no longer work in version 2.0. Use the shortlink generator instead.');
+
         if ($this->alias) {
             return '/'.$this->alias;
         }
