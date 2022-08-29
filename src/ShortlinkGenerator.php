@@ -26,6 +26,6 @@ class ShortlinkGenerator
             $alias = $this->hashids->encode($id);
         }
 
-        return rtrim($this->host ?: $this->requestContext->getHost(), '/').'/'.ltrim($alias, '/');
+        return $this->requestContext->getScheme() . '://' . rtrim($this->host ?: $this->requestContext->getHost(), '/').'/'.ltrim($alias, '/');
     }
 }

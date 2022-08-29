@@ -35,7 +35,7 @@ class InsertTagsListener
                 return '';
             }
 
-            return '//'.$this->generator->generate($link->getId(), $link->getAlias());
+            return $this->generator->generate($link->getId(), $link->getAlias());
         }
 
         return false;

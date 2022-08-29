@@ -29,7 +29,7 @@ class ShortlinkLabelListener
     {
         $url = $this->generator->generate((int) $row['id'], $row['alias'] ?? null);
 
-        $columns[0] = sprintf('<a href="//%s" target="_blank">%s</a>', $url, $url);
+        $columns[0] = sprintf('<a href="%s" target="_blank">%s</a>', $url, preg_replace('/^https?:\/\//', '', $url));
 
         $columns[1] = sprintf(
             '<a href="%s" target="_blank">%s</a>',
