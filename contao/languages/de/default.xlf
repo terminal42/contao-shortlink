@@ -6,6 +6,10 @@
                 <source>Shortlinks</source>
                 <target>Kurzlinks</target>
             </trans-unit>
+            <trans-unit id="MSC.shortlinkPicker">
+                <source>Shortlinks</source>
+                <target>Kurzlinks</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -10,9 +10,7 @@ services:
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkLabelListener:
         arguments:
             - '@database_connection'
-            - '@terminal42_shortlink.hashids'
-            - '@router.request_context'
-            - '%terminal42_shortlink.host%'
+            - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
 
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkPermissionListener:
         arguments:
@@ -21,6 +19,25 @@ services:
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkDateAddedListener:
         arguments:
             - '@database_connection'
+
+    Terminal42\ShortlinkBundle\ShortlinkGenerator:
+        arguments:
+            - '@terminal42_shortlink.hashids'
+            - '@router.request_context'
+            - '%terminal42_shortlink.host%'
+
+    Terminal42\ShortlinkBundle\EventListener\InsertTagsListener:
+        arguments:
+            - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
+            - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
+
+    Terminal42\ShortlinkBundle\Picker\ShortlinkPickerProvider:
+        arguments:
+            - '@knp_menu.factory'
+            - '@router'
+            - '@?translator'
+        tags:
+            - { name: contao.picker_provider }
 
     Terminal42\ShortlinkBundle\Repository\ShortlinkRepository:
         arguments:

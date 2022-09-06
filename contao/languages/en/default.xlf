@@ -5,6 +5,9 @@
             <trans-unit id="MOD.shortlink.0">
                 <source>Shortlinks</source>
             </trans-unit>
+            <trans-unit id="MSC.shortlinkPicker">
+                <source>Shortlinks</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
