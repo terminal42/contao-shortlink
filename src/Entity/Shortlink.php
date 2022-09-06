@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @noinspection PhpUnusedPrivateFieldInspection
+ * @noinspection PhpPropertyOnlyWrittenInspection
+ */
+
 declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\Entity;
@@ -21,55 +26,41 @@ use Hashids\Hashids;
 class Shortlink
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true, "default"=0})
      */
-    private $tstamp;
+    private int $tstamp;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=128, nullable=false, options={"default"=""})
      */
-    private $alias;
+    private string $alias;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=255, nullable=false, options={"default"=""})
      */
-    private $name;
+    private string $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=false, options={"default"=""})
+     * @ORM\Column(type="text", length=65535)
      */
-    private $target;
+    private ?string $target = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", length=1, nullable=false, options={"fixed"=true, "default"=""})
      */
-    private $published;
+    private string $published;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true, "default"=0})
      */
-    private $dateAdded;
+    private int $dateAdded;
 
     /**
      * @var Collection
@@ -95,7 +86,7 @@ class Shortlink
         return $this->alias;
     }
 
-    public function getPath(Hashids $hashids)
+    public function getPath(Hashids $hashids): string
     {
         trigger_deprecation('terminal42/core-shortlink', '1.1', 'Using getPath() has been deprecated and will no longer work in version 2.0. Use the shortlink generator instead.');
 
@@ -106,7 +97,7 @@ class Shortlink
         return '/'.$hashids->encode($this->id);
     }
 
-    public function getRouteKey()
+    public function getRouteKey(): string
     {
         return 'tl_terminal42_shortlink.'.$this->id;
     }

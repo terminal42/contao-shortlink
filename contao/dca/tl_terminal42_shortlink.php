@@ -93,7 +93,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = array
             'sorting'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'dcaPicker'=>true, 'addWizardClass'=>false, 'tl_class'=>'clr'),
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'dcaPicker'=>true, 'addWizardClass'=>false, 'tl_class'=>'clr'),
         ),
         'alias' => array
         (
