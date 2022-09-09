@@ -38,6 +38,10 @@
                 <source>Visitors</source>
                 <target>Besuche</target>
             </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.dateAdded.0">
+                <source>Date added</source>
+                <target>Hinzugefügt</target>
+            </trans-unit>
             <trans-unit id="tl_terminal42_shortlink.url_legend">
                 <source>URL configuration</source>
                 <target>URL-Einstellungen</target>

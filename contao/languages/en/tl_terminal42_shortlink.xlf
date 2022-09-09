@@ -29,6 +29,9 @@
             <trans-unit id="tl_terminal42_shortlink.log.0">
                 <source>Visitors</source>
             </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.dateAdded.0">
+                <source>Date added</source>
+            </trans-unit>
             <trans-unit id="tl_terminal42_shortlink.url_legend">
                 <source>URL configuration</source>
             </trans-unit>
