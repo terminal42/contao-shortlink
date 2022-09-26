@@ -48,7 +48,7 @@ class Shortlink
     private string $name;
 
     /**
-     * @ORM\Column(type="text", length=65535)
+     * @ORM\Column(type="text", nullable=true, length=65535)
      */
     private ?string $target = null;
 
