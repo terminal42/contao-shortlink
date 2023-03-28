@@ -13,34 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class ShortlinkLog
 {
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @var int
-     *
      * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true})
      */
-    private $tstamp;
+    private int $tstamp;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text", nullable=true, length=65535)
      */
-    private $browser;
+    private string $browser;
 
     /**
-     * @var string|null
-     *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $ip;
+    private ?string $ip;
 
     /**
      * @ORM\ManyToOne(targetEntity="Terminal42\ShortlinkBundle\Entity\Shortlink", inversedBy="logs")

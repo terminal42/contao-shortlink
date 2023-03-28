@@ -63,10 +63,9 @@ class Shortlink
     private int $dateAdded;
 
     /**
-     * @var Collection
      * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", fetch="EXTRA_LAZY", cascade={"persist","remove"})
      */
-    private $logs;
+    private Collection $logs;
 
     /**
      * Constructor.

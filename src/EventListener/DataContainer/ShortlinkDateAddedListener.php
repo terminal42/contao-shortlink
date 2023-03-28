@@ -15,10 +15,7 @@ class ShortlinkDateAddedListener
 {
     private const TABLE = 'tl_terminal42_shortlink';
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {
