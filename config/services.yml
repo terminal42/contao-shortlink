@@ -3,7 +3,7 @@ services:
         arguments:
             - '@contao.framework'
             - '@doctrine'
-            - '%terminal42_shortlink.log_ip%'
+            - ~
         tags:
             - { name: controller.service_arguments }
 
@@ -24,7 +24,7 @@ services:
         arguments:
             - '@terminal42_shortlink.hashids'
             - '@router.request_context'
-            - '%terminal42_shortlink.host%'
+            - ~
 
     Terminal42\ShortlinkBundle\EventListener\InsertTagsListener:
         arguments:
@@ -46,7 +46,6 @@ services:
 
     terminal42_shortlink.hashids:
         class: Hashids\Hashids
-        arguments: ['%terminal42_shortlink.salt%']
 
     terminal42_shortlink.routing.router:
         class: Symfony\Cmf\Component\Routing\DynamicRouter
@@ -83,10 +82,10 @@ services:
         arguments:
             - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
             - '@terminal42_shortlink.hashids'
-            - '%terminal42_shortlink.host%'
+            - ~
 
     terminal42_shortlink.routing.route_generator:
         class: Symfony\Cmf\Component\Routing\ProviderBasedGenerator
         arguments:
             - '@terminal42_shortlink.routing.route_provider'
-            - '@logger'
+            - '@?logger'
