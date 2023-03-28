@@ -20,7 +20,7 @@ class ShortlinkGenerator
         $this->host = $host;
     }
 
-    public function generate(int $id, ?string $alias = null): string
+    public function generate(int $id, string $alias = null): string
     {
         return $this->requestContext->getScheme().'://'.rtrim($this->host ?: $this->requestContext->getHost(), '/').$this->generatePath($id, $alias);
     }

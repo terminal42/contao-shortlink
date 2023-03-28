@@ -17,10 +17,7 @@ use Terminal42\ShortlinkBundle\Terminal42ShortlinkBundle;
 
 class Plugin implements BundlePluginInterface, ConfigPluginInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getBundles(ParserInterface $parser)
+    public function getBundles(ParserInterface $parser): array
     {
         return [
             BundleConfig::create(Terminal42ShortlinkBundle::class)
@@ -28,9 +25,6 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
         ];
     }
 
-    /**
-     * Allows a plugin to load container configuration.
-     */
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
     {
         $loader->load(

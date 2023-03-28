@@ -11,10 +11,7 @@ use Terminal42\ShortlinkBundle\Entity\Shortlink;
 
 class ShortlinkRepository extends ServiceEntityRepository
 {
-    /**
-     * @var Hashids
-     */
-    private $hashids;
+    private Hashids $hashids;
 
     /**
      * Constructor.
@@ -35,8 +32,8 @@ class ShortlinkRepository extends ServiceEntityRepository
 
         return $this->getEntityManager()
             ->createQuery(/** @lang DQL */"
-                SELECT sl 
-                FROM Terminal42\\ShortlinkBundle\\Entity\\Shortlink sl 
+                SELECT sl
+                FROM Terminal42\\ShortlinkBundle\\Entity\\Shortlink sl
                 WHERE (
                         sl.alias=:alias
                         OR (sl.alias='' AND sl.id=:id)

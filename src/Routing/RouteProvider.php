@@ -30,10 +30,7 @@ class RouteProvider implements RouteProviderInterface
         $this->catchallRedirect = $catchallRedirect;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getRouteCollectionForRequest(Request $request)
+    public function getRouteCollectionForRequest(Request $request): RouteCollection
     {
         $alias = substr($request->getPathInfo(), 1);
         $links = $this->repository->findRouteCandidatesByAlias($alias);
@@ -66,17 +63,11 @@ class RouteProvider implements RouteProviderInterface
         return $collection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRouteByName($name): Route
     {
         throw new RouteNotFoundException('This router does not support routes by name');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRoutesByNames($names): array
     {
         return [];
