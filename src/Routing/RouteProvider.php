@@ -32,6 +32,10 @@ class RouteProvider implements RouteProviderInterface
 
     public function getRouteCollectionForRequest(Request $request): RouteCollection
     {
+        if ($this->host && $request->getHost() !== $this->host) {
+            return new RouteCollection();
+        }
+
         $alias = substr($request->getPathInfo(), 1);
         $links = $this->repository->findRouteCandidatesByAlias($alias);
         $collection = new RouteCollection();
