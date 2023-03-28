@@ -17,6 +17,13 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('host')->defaultValue('')->end()
+                ->scalarNode('catchall_redirect')
+                    ->defaultNull()
+                    ->validate()
+                        ->ifTrue(static fn (string $v) => !preg_match('{^https?://}i', $v))
+                        ->thenInvalid('The catchall_redirect must be an absolute URL (starting with http:// or https://)')
+                    ->end()
+                ->end()
                 ->scalarNode('salt')->defaultValue('terminal42_shortlink')->end()
                 ->booleanNode('log_ip')->defaultFalse()->end()
             ->end()

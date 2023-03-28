@@ -22,10 +22,15 @@ class ShortlinkGenerator
 
     public function generate(int $id, ?string $alias = null): string
     {
+        return $this->requestContext->getScheme().'://'.rtrim($this->host ?: $this->requestContext->getHost(), '/').$this->generatePath($id, $alias);
+    }
+
+    public function generatePath(int $id, string $alias = null): string
+    {
         if (!$alias) {
             $alias = $this->hashids->encode($id);
         }
 
-        return $this->requestContext->getScheme() . '://' . rtrim($this->host ?: $this->requestContext->getHost(), '/').'/'.ltrim($alias, '/');
+        return '/'.ltrim($alias, '/');
     }
 }

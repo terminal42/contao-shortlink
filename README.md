@@ -31,12 +31,16 @@ composer installed globally.
 ```yaml
 terminal42_shortlink:
     host: ~
+    catchall_redirect: ~
     salt: terminal42_shortlink
     log_ip: false
 ```
 
 - **host:** The host to use for shortlinks. Can be different than the website host,
     but make sure it is set up on your hosting/server.
+
+- **catchall_redirect:** If you configure a host exclusively for shortlinks, you can
+    redirect all unknown requests to a URL (e.g. your regular website). 
 
 - **salt:** If a shortlink does not have a custom alias (path), a unique hash ID is
     generated from the database ID. By changing the salt you can get unique IDs for your

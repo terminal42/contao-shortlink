@@ -81,7 +81,8 @@ services:
         class: Terminal42\ShortlinkBundle\Routing\RouteProvider
         arguments:
             - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
-            - '@terminal42_shortlink.hashids'
+            - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
+            - ~
             - ~
 
     terminal42_shortlink.routing.route_generator:
