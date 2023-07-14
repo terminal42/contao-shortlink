@@ -50,7 +50,7 @@ class ShortlinkPickerProvider extends AbstractInsertTagPickerProvider implements
         return sprintf($this->getInsertTag($config), $value);
     }
 
-    protected function getRouteParameters(PickerConfig $config = null): array
+    protected function getRouteParameters(?PickerConfig $config = null): array
     {
         return ['do' => 'shortlink'];
     }

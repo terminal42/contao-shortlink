@@ -31,7 +31,7 @@ class ShortlinkRepository extends ServiceEntityRepository
         $ids = $this->hashids->decode($alias);
 
         return $this->getEntityManager()
-            ->createQuery(/** @lang DQL */"
+            ->createQuery(/** @lang DQL */ "
                 SELECT sl
                 FROM Terminal42\\ShortlinkBundle\\Entity\\Shortlink sl
                 WHERE (
