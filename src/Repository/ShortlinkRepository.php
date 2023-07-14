@@ -35,12 +35,12 @@ class ShortlinkRepository extends ServiceEntityRepository
                 SELECT sl
                 FROM Terminal42\\ShortlinkBundle\\Entity\\Shortlink sl
                 WHERE (
-                        sl.alias=:alias
+                        LOWER(sl.alias)=:alias
                         OR (sl.alias='' AND sl.id=:id)
                     )
                     AND sl.published='1'
             ")
-            ->setParameter('alias', $alias)
+            ->setParameter('alias', strtolower($alias))
             ->setParameter('id', $ids[0] ?? 0)
             ->getResult()
         ;
