@@ -16,22 +16,15 @@ use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
 
 class ShortlinkController
 {
-    private Registry $doctrine;
-    private bool $logIp;
-    private ContaoFramework $framework;
-
-    public function __construct(ContaoFramework $framework, Registry $doctrine, bool $logIp)
+    public function __construct(private readonly ContaoFramework $framework, private readonly Registry $doctrine, private readonly bool $logIp)
     {
-        $this->framework = $framework;
-        $this->doctrine = $doctrine;
-        $this->logIp = $logIp;
     }
 
-    public function __invoke(Shortlink $_content, Request $request)
+    public function __invoke(Shortlink $_content, Request $request): Response
     {
         $log = new ShortlinkLog(
             $request->headers->get('User-Agent', ''),
-            $this->logIp ? $request->getClientIp() : null
+            $this->logIp ? $request->getClientIp() : null,
         );
 
         $_content->addLog($log);
@@ -50,7 +43,7 @@ class ShortlinkController
             Response::HTTP_FOUND,
             [
                 'Cache-Control' => 'no-cache',
-            ]
+            ],
         );
     }
 
@@ -58,17 +51,16 @@ class ShortlinkController
     {
         $target = $shortlink->getTarget();
 
-        if (false === strpos($target, '{{')) {
+        if (!str_contains($target, '{{')) {
             return $target;
         }
 
-        $this->framework->initialize(true);
+        $this->framework->initialize();
 
-        /** @var InsertTags $insertTags */
-        $insertTags = $this->framework->createInstance(InsertTags::class);
+        $this->framework->createInstance(InsertTags::class);
 
         $target = str_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
 
-        return $insertTags->replace($target);
+        return \Contao\System::getContainer()->get('contao.insert_tag.parser')->replace($target);
     }
 }

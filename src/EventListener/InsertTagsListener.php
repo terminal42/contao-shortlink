@@ -9,21 +9,14 @@ use Terminal42\ShortlinkBundle\Entity\Shortlink;
 use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
-/**
- * @Hook("replaceInsertTags")
- */
+#[\Contao\CoreBundle\DependencyInjection\Attribute\AsHook('replaceInsertTags')]
 class InsertTagsListener
 {
-    private ShortlinkGenerator $generator;
-    private ShortlinkRepository $repository;
-
-    public function __construct(ShortlinkGenerator $generator, ShortlinkRepository $repository)
+    public function __construct(private readonly ShortlinkGenerator $generator, private readonly ShortlinkRepository $repository)
     {
-        $this->generator = $generator;
-        $this->repository = $repository;
     }
 
-    public function __invoke(string $tag)
+    public function __invoke(string $tag): string|bool
     {
         $chunks = explode('::', $tag);
 

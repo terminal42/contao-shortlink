@@ -27,18 +27,18 @@ class ShortlinkLog
     /**
      * @ORM\Column(type="text", nullable=true, length=65535)
      */
-    private string $browser;
+    private string|null $browser;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private ?string $ip;
+    private string|null $ip;
 
     /**
      * @ORM\ManyToOne(targetEntity="Terminal42\ShortlinkBundle\Entity\Shortlink", inversedBy="logs")
      * @ORM\JoinColumn(name="pid", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $shortlink;
+    private Shortlink|null $shortlink;
 
     /**
      * Constructor.

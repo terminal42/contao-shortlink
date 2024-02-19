@@ -13,7 +13,6 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('terminal42_shortlink');
         $rootNode = $treeBuilder->getRootNode();
-
         $rootNode
             ->children()
                 ->scalarNode('host')->defaultValue('')->end()

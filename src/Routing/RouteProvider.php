@@ -17,17 +17,8 @@ use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 class RouteProvider implements RouteProviderInterface
 {
-    private ShortlinkRepository $repository;
-    private ShortlinkGenerator $shortlinkGenerator;
-    private string $host;
-    private ?string $catchallRedirect;
-
-    public function __construct(ShortlinkRepository $repository, ShortlinkGenerator $shortlinkGenerator, string $host, ?string $catchallRedirect)
+    public function __construct(private readonly ShortlinkRepository $repository, private readonly ShortlinkGenerator $shortlinkGenerator, private readonly string $host, private readonly string|null $catchallRedirect)
     {
-        $this->repository = $repository;
-        $this->host = $host;
-        $this->shortlinkGenerator = $shortlinkGenerator;
-        $this->catchallRedirect = $catchallRedirect;
     }
 
     public function getRouteCollectionForRequest(Request $request): RouteCollection
@@ -67,12 +58,12 @@ class RouteProvider implements RouteProviderInterface
         return $collection;
     }
 
-    public function getRouteByName($name): Route
+    public function getRouteByName(string $name): Route
     {
         throw new RouteNotFoundException('This router does not support routes by name');
     }
 
-    public function getRoutesByNames($names): array
+    public function getRoutesByNames(array|null $names = null): array
     {
         return [];
     }
