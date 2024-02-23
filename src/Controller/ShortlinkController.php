@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\Controller;
 
-use Contao\CoreBundle\Framework\ContaoFramework;
-use Contao\InsertTags;
-use Contao\System;
+use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +16,8 @@ use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
 class ShortlinkController
 {
     public function __construct(
-        private readonly ContaoFramework $framework,
         private readonly Registry $doctrine,
+        private readonly InsertTagParser $insertTagParser,
         private readonly bool $logIp,
     ) {
     }
@@ -59,12 +57,8 @@ class ShortlinkController
             return $target;
         }
 
-        $this->framework->initialize();
-
-        $this->framework->createInstance(InsertTags::class);
-
         $target = str_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
 
-        return System::getContainer()->get('contao.insert_tag.parser')->replace($target);
+        return $this->insertTagParser->replace($target);
     }
 }
