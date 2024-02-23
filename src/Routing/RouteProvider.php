@@ -17,8 +17,12 @@ use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 class RouteProvider implements RouteProviderInterface
 {
-    public function __construct(private readonly ShortlinkRepository $repository, private readonly ShortlinkGenerator $shortlinkGenerator, private readonly string $host, private readonly string|null $catchallRedirect)
-    {
+    public function __construct(
+        private readonly ShortlinkRepository $repository,
+        private readonly ShortlinkGenerator $shortlinkGenerator,
+        private readonly string $host,
+        private readonly string|null $catchallRedirect,
+    ) {
     }
 
     public function getRouteCollectionForRequest(Request $request): RouteCollection

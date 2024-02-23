@@ -14,8 +14,10 @@ class ShortlinkRepository extends ServiceEntityRepository
     /**
      * Constructor.
      */
-    public function __construct(ManagerRegistry $registry, private readonly Hashids $hashids)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly Hashids $hashids,
+    ) {
         parent::__construct($registry, Shortlink::class);
     }
 

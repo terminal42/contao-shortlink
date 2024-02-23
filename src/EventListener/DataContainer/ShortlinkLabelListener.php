@@ -4,18 +4,20 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Doctrine\DBAL\Connection;
 use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
-#[\Contao\CoreBundle\DependencyInjection\Attribute\AsCallback(table: 'tl_terminal42_shortlink', target: 'list.label.label')]
+#[AsCallback(table: 'tl_terminal42_shortlink', target: 'list.label.label')]
 class ShortlinkLabelListener
 {
     private array|null $counts = null;
 
-    public function __construct(private readonly Connection $connection, private readonly ShortlinkGenerator $generator)
-    {
+    public function __construct(
+        private readonly Connection $connection,
+        private readonly ShortlinkGenerator $generator,
+    ) {
     }
 
     public function __invoke(array $row, string $label, DataContainer $dc, array $columns): array

@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
-use Contao\BackendUser;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Security\ContaoCorePermissions;
-use Contao\CoreBundle\ServiceAnnotation\Callback;
 use Contao\System;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-#[\Contao\CoreBundle\DependencyInjection\Attribute\AsCallback(table: 'tl_terminal42_shortlink', target: 'config.onload')]
+#[AsCallback(table: 'tl_terminal42_shortlink', target: 'config.onload')]
 class ShortlinkPermissionListener
 {
     private const TABLE = 'tl_terminal42_shortlink';

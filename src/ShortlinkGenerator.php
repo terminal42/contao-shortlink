@@ -9,8 +9,11 @@ use Symfony\Component\Routing\RequestContext;
 
 class ShortlinkGenerator
 {
-    public function __construct(private readonly Hashids $hashids, private readonly RequestContext $requestContext, private readonly string $host)
-    {
+    public function __construct(
+        private readonly Hashids $hashids,
+        private readonly RequestContext $requestContext,
+        private readonly string $host,
+    ) {
     }
 
     public function generate(int $id, string|null $alias = null): string

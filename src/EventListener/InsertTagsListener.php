@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener;
 
-use Contao\CoreBundle\ServiceAnnotation\Hook;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
-#[\Contao\CoreBundle\DependencyInjection\Attribute\AsHook('replaceInsertTags')]
+#[AsHook('replaceInsertTags')]
 class InsertTagsListener
 {
-    public function __construct(private readonly ShortlinkGenerator $generator, private readonly ShortlinkRepository $repository)
-    {
+    public function __construct(
+        private readonly ShortlinkGenerator $generator,
+        private readonly ShortlinkRepository $repository,
+    ) {
     }
 
-    public function __invoke(string $tag): string|bool
+    public function __invoke(string $tag): bool|string
     {
         $chunks = explode('::', $tag);
 
