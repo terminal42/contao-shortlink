@@ -29,7 +29,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.0",
         "composer/semver": "*",
-        "contao/core-bundle": "^5.3",
+        "contao/core-bundle": "^4.13 || ^5.0",
         "hashids/hashids": "^3.0 || ^4.1"
     },
     "require-dev": {
