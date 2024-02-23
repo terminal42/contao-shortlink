@@ -11,65 +11,47 @@ namespace Terminal42\ShortlinkBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Index;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\Table;
 use Hashids\Hashids;
+use Terminal42\ShortlinkBundle\Repository\ShortlinkRepository;
 
-/**
- * @ORM\Table(
- *     name="tl_terminal42_shortlink",
- *     indexes={
- *         @ORM\Index(name="published", columns={"published","alias"})
- *     }
- * )
- * @ORM\Entity(repositoryClass="Terminal42\ShortlinkBundle\Repository\ShortlinkRepository")
- */
+#[Table(name: 'tl_terminal42_shortlink')]
+#[Index(name: 'published', columns: ['published', 'alias'])]
+#[Entity(repositoryClass: ShortlinkRepository::class)]
 class Shortlink
 {
-    /**
-     * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
+    #[Column(type: 'integer', nullable: false, options: ['unsigned' => true])]
+    #[Id]
+    #[GeneratedValue(strategy: 'IDENTITY')]
     private int $id;
 
-    /**
-     * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true, "default"=0})
-     */
+    #[Column(nullable: false, options: ['unsigned' => true, 'default' => 0])]
     private int $tstamp;
 
-    /**
-     * @ORM\Column(type="string", length=128, nullable=false, options={"default"=""})
-     */
+    #[Column(length: 128, nullable: false, options: ['default' => ''])]
     private string $alias;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=false, options={"default"=""})
-     */
+    #[Column(length: 255, nullable: false, options: ['default' => ''])]
     private string $name;
 
-    /**
-     * @ORM\Column(type="text", nullable=true, length=65535)
-     */
-    private ?string $target = null;
+    #[Column(type: 'text', nullable: true, length: 65535)]
+    private string|null $target = null;
 
-    /**
-     * @ORM\Column(type="string", length=1, nullable=false, options={"fixed"=true, "default"=""})
-     */
+    #[Column(length: 1, nullable: false, options: ['fixed' => true, 'default' => ''])]
     private string $published;
 
-    /**
-     * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true, "default"=0})
-     */
+    #[Column(nullable: false, options: ['unsigned' => true, 'default' => 0])]
     private int $dateAdded;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Terminal42\ShortlinkBundle\Entity\ShortlinkLog", mappedBy="shortlink", fetch="EXTRA_LAZY", cascade={"persist","remove"})
-     */
+    #[OneToMany(targetEntity: ShortlinkLog::class, mappedBy: 'shortlink', fetch: 'EXTRA_LAZY', cascade: ['persist', 'remove'])]
     private Collection $logs;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->logs = new ArrayCollection();

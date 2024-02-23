@@ -29,7 +29,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
     {
         $loader->load(
             static function (ContainerBuilder $container): void {
-                $isNew = InstalledVersions::satisfies(new VersionParser(), 'symfony/doctrine-bridge', '^5.4');
+                $isNew = InstalledVersions::satisfies(new VersionParser(), 'symfony/doctrine-bridge', '>=5.4');
                 $bundleDir = $isNew ? 'src/Entity' : 'Entity';
 
                 $container->loadFromExtension('doctrine', [
@@ -43,7 +43,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
                         ],
                     ],
                 ]);
-            }
+            },
         );
     }
 }

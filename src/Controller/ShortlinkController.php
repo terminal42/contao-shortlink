@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\Controller;
 
-use Contao\CoreBundle\Framework\ContaoFramework;
-use Contao\InsertTags;
+use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,22 +15,18 @@ use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
 
 class ShortlinkController
 {
-    private Registry $doctrine;
-    private bool $logIp;
-    private ContaoFramework $framework;
-
-    public function __construct(ContaoFramework $framework, Registry $doctrine, bool $logIp)
-    {
-        $this->framework = $framework;
-        $this->doctrine = $doctrine;
-        $this->logIp = $logIp;
+    public function __construct(
+        private readonly Registry $doctrine,
+        private readonly InsertTagParser $insertTagParser,
+        private readonly bool $logIp,
+    ) {
     }
 
-    public function __invoke(Shortlink $_content, Request $request)
+    public function __invoke(Shortlink $_content, Request $request): Response
     {
         $log = new ShortlinkLog(
             $request->headers->get('User-Agent', ''),
-            $this->logIp ? $request->getClientIp() : null
+            $this->logIp ? $request->getClientIp() : null,
         );
 
         $_content->addLog($log);
@@ -50,7 +45,7 @@ class ShortlinkController
             Response::HTTP_FOUND,
             [
                 'Cache-Control' => 'no-cache',
-            ]
+            ],
         );
     }
 
@@ -58,17 +53,12 @@ class ShortlinkController
     {
         $target = $shortlink->getTarget();
 
-        if (false === strpos($target, '{{')) {
+        if (!str_contains($target, '{{')) {
             return $target;
         }
 
-        $this->framework->initialize(true);
-
-        /** @var InsertTags $insertTags */
-        $insertTags = $this->framework->createInstance(InsertTags::class);
-
         $target = str_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
 
-        return $insertTags->replace($target);
+        return $this->insertTagParser->replace($target);
     }
 }

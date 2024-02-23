@@ -11,16 +11,14 @@ use Terminal42\ShortlinkBundle\Entity\Shortlink;
 
 class ShortlinkRepository extends ServiceEntityRepository
 {
-    private Hashids $hashids;
-
     /**
      * Constructor.
      */
-    public function __construct(ManagerRegistry $registry, Hashids $hashids)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly Hashids $hashids,
+    ) {
         parent::__construct($registry, Shortlink::class);
-
-        $this->hashids = $hashids;
     }
 
     /**

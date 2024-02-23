@@ -1,10 +1,11 @@
 <?php
 
-$GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
+use Contao\DC_Table;
 
+$GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
     // Config
     'config' => [
-        'dataContainer' => 'Table',
+        'dataContainer' => DC_Table::class,
         'enableVersioning' => true,
         'ctable' => ['tl_terminal42_shortlink_log'],
     ],

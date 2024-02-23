@@ -15,7 +15,7 @@ class ShortlinkPickerProvider extends AbstractInsertTagPickerProvider implements
         return 'shortlinkPicker';
     }
 
-    public function supportsContext($context): bool
+    public function supportsContext(string $context): bool
     {
         return 'link' === $context;
     }
@@ -25,7 +25,7 @@ class ShortlinkPickerProvider extends AbstractInsertTagPickerProvider implements
         return $this->isMatchingInsertTag($config);
     }
 
-    public function getDcaTable(): string
+    public function getDcaTable(PickerConfig|null $config = null): string
     {
         return 'tl_terminal42_shortlink';
     }
@@ -45,12 +45,12 @@ class ShortlinkPickerProvider extends AbstractInsertTagPickerProvider implements
         return $attributes;
     }
 
-    public function convertDcaValue(PickerConfig $config, $value): string
+    public function convertDcaValue(PickerConfig $config, mixed $value): string
     {
         return sprintf($this->getInsertTag($config), $value);
     }
 
-    protected function getRouteParameters(?PickerConfig $config = null): array
+    protected function getRouteParameters(PickerConfig|null $config = null): array
     {
         return ['do' => 'shortlink'];
     }
