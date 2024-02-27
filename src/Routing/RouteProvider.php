@@ -62,12 +62,18 @@ class RouteProvider implements RouteProviderInterface
         return $collection;
     }
 
-    public function getRouteByName(string $name): Route
+    /**
+     * Do not add argument type for compatibility with Contao 4.13.
+     */
+    public function getRouteByName(/* string */ $name): Route
     {
         throw new RouteNotFoundException('This router does not support routes by name');
     }
 
-    public function getRoutesByNames(array|null $names = null): array
+    /**
+     * Do not add argument type for compatibility with Contao 4.13.
+     */
+    public function getRoutesByNames(/* array|null */ $names = null): array
     {
         return [];
     }
