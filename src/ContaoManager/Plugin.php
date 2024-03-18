@@ -37,7 +37,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
                         'mappings' => [
                             'Terminal42ShortlinkBundle' => [
                                 'is_bundle' => true,
-                                'type' => 'annotation',
+                                'type' => 'attribute',
                                 'dir' => $bundleDir,
                             ],
                         ],
