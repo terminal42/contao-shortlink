@@ -6,7 +6,7 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Security\ContaoCorePermissions;
-use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Security\Core\Security;
 
 #[AsCallback(table: 'tl_terminal42_shortlink', target: 'config.onload')]
 class ShortlinkPermissionListener

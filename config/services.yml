@@ -1,4 +1,7 @@
 services:
+    _defaults:
+        autoconfigure: true
+
     Terminal42\ShortlinkBundle\Controller\ShortlinkController:
         arguments:
             - '@doctrine'
