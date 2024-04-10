@@ -19,7 +19,7 @@ class ShortlinkPermissionListener
 
     public function __invoke(): void
     {
-        if ($this->security->isGranted(ContaoCorePermissions::USER_CAN_EDIT_FIELD_OF_TABLE, self::TABLE)) {
+        if ($this->security->isGranted(ContaoCorePermissions::USER_CAN_EDIT_FIELDS_OF_TABLE, self::TABLE)) {
             return;
         }
 
