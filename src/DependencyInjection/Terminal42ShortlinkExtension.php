@@ -29,8 +29,8 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
 
         $container
             ->getDefinition(ShortlinkGenerator::class)
-            ->setArgument(2, $config['host'])
-            ->setArgument(3, $config['prefix'])
+            ->setArgument(3, $config['host'])
+            ->setArgument(4, $config['prefix'])
         ;
 
         $container

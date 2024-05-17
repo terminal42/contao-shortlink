@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\Controller;
 
-use Contao\CoreBundle\InsertTag\InsertTagParser;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 use Terminal42\ShortlinkBundle\Entity\ShortlinkLog;
+use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 class ShortlinkController
 {
     public function __construct(
         private readonly Registry $doctrine,
-        private readonly InsertTagParser $insertTagParser,
+        private readonly ShortlinkGenerator $shortlinkGenerator,
         private readonly bool $logIp,
     ) {
     }
@@ -33,7 +33,7 @@ class ShortlinkController
         $this->doctrine->getManager()->persist($_content);
         $this->doctrine->getManager()->flush();
 
-        $redirectUrl = $this->getRedirectUrl($_content);
+        $redirectUrl = $this->shortlinkGenerator->generateTargetUrl($_content->getTarget());
 
         // Target URL (probably from link_:: insert tag) no longer exists
         if (empty($redirectUrl)) {
@@ -47,18 +47,5 @@ class ShortlinkController
                 'Cache-Control' => 'no-cache',
             ],
         );
-    }
-
-    private function getRedirectUrl(Shortlink $shortlink): string
-    {
-        $target = $shortlink->getTarget();
-
-        if (!str_contains($target, '{{')) {
-            return $target;
-        }
-
-        $target = str_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
-
-        return $this->insertTagParser->replace($target);
     }
 }

@@ -22,17 +22,27 @@ class ShortlinkLabelListener
 
     public function __invoke(array $row, string $label, DataContainer $dc, array $columns): array
     {
-        $url = $this->generator->generate((int) $row['id'], $row['alias'] ?? null);
+        foreach ($GLOBALS['TL_DCA']['tl_terminal42_shortlink']['list']['label']['fields'] as $k => $field) {
+            switch ($field) {
+                case 'alias':
+                    $url = $this->generator->generate((int) $row['id'], $row['alias'] ?? null);
+                    $columns[$k] = sprintf('<a href="%s" target="_blank">%s</a>', $url, preg_replace('/^https?:\/\//', '', $url));
+                    break;
 
-        $columns[0] = sprintf('<a href="%s" target="_blank">%s</a>', $url, preg_replace('/^https?:\/\//', '', $url));
+                case 'target':
+                    $targetUrl = $this->generator->generateTargetUrl($row['target']);
+                    $columns[$k] = sprintf(
+                        '<a href="%s" target="_blank">%s</a>',
+                        $targetUrl,
+                        $row['name'] ?: $targetUrl,
+                    );
+                    break;
 
-        $columns[1] = sprintf(
-            '<a href="%s" target="_blank">%s</a>',
-            $columns[1],
-            $row['name'] ?: $columns[1],
-        );
-
-        $columns[2] = $this->getLogCount((int) $row['id']);
+                case 'log':
+                    $columns[$k] = $this->getLogCount((int) $row['id']);
+                    break;
+            }
+        }
 
         return $columns;
     }
