@@ -8,6 +8,18 @@
             <trans-unit id="MSC.shortlinkPicker">
                 <source>Shortlinks</source>
             </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.headline">
+                <source>QR Code for shortlink ID %s</source>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.explanation">
+                <source>Download the QR code image for this shortlink by clicking the button.</source>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.svg">
+                <source>Download SVG</source>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.png">
+                <source>Download PNG</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

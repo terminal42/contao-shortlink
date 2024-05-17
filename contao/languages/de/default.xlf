@@ -10,6 +10,22 @@
                 <source>Shortlinks</source>
                 <target>Kurzlinks</target>
             </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.headline">
+                <source>QR Code for shortlink ID %s</source>
+                <target>QR Code für Kurzlink ID %s</target>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.explanation">
+                <source>Download the QR code image for this shortlink by clicking the button.</source>
+                <target>Hier können Sie den QR-Code für diesen Kurzlink herunterladen.</target>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.svg">
+                <source>Download SVG</source>
+                <target>SVG herunterladen</target>
+            </trans-unit>
+            <trans-unit id="MSC.shortlinkQrCode.png">
+                <source>Download PNG</source>
+                <target>PNG herunterladen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -30,7 +30,8 @@
         "composer-runtime-api": "^2.0",
         "composer/semver": "*",
         "contao/core-bundle": "^4.13 || ^5.0",
-        "hashids/hashids": "^3.0 || ^4.1"
+        "hashids/hashids": "^3.0 || ^4.1",
+        "bacon/bacon-qr-code": "^2.0 || ^3.0"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
@@ -49,7 +50,10 @@
     },
     "config": {
         "allow-plugins": {
-            "terminal42/contao-build-tools": true
+            "terminal42/contao-build-tools": true,
+            "contao/manager-plugin": false,
+            "contao-components/installer": false,
+            "php-http/discovery": false
         }
     }
 }

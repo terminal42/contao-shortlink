@@ -2,6 +2,13 @@ services:
     _defaults:
         autoconfigure: true
 
+    Terminal42\ShortlinkBundle\Controller\QrCodeController:
+        arguments:
+            - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
+            - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
+        tags:
+            - { name: controller.service_arguments }
+
     Terminal42\ShortlinkBundle\Controller\ShortlinkController:
         arguments:
             - '@doctrine'

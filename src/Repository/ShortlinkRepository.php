@@ -9,6 +9,9 @@ use Doctrine\Persistence\ManagerRegistry;
 use Hashids\Hashids;
 use Terminal42\ShortlinkBundle\Entity\Shortlink;
 
+/**
+ * @extends ServiceEntityRepository<Shortlink>
+ */
 class ShortlinkRepository extends ServiceEntityRepository
 {
     /**

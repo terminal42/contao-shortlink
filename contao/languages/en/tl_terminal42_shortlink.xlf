@@ -74,6 +74,12 @@
             <trans-unit id="tl_terminal42_shortlink.toggle.1">
                 <source>Enable/disable shortlink ID %s</source>
             </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.qrCode.0">
+                <source>Generate QR code</source>
+            </trans-unit>
+            <trans-unit id="tl_terminal42_shortlink.qrCode.1">
+                <source>Generate QR code for shortlink ID %s</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

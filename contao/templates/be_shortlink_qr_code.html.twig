@@ -1,0 +1,25 @@
+{% trans_default_domain 'contao_default' %}
+
+<div id="tl_buttons">
+    <a href="{{ backUrl }}" class="header_back" title="{{ 'MSC.backBTTitle'|trans|e('html_attr') }}">{{ 'MSC.backBT'|trans }}</a>
+</div>
+
+<div class="maintenance_active">
+    <h2 class="sub_headline">{{ 'MSC.shortlinkQrCode.headline'|trans([shortlink.id]) }}</h2>
+
+    <div class="tl_tbox" style="padding:12px 18px">
+        <p>{{ 'MSC.shortlinkQrCode.explanation'|trans }}</p>
+    </div>
+
+      <div class="tl_tbox" style="text-align:center;background-color:#f6f6f6">
+          <figure style="padding:13px 25px 0">
+              {{ qrCode|raw }}
+          </figure>
+          <figcaption style="margin-top:18px;font-weight:bold"><a href="{{ url }}" target="_blank">{{ url }}</a></figcaption>
+      </div>
+
+    <div class="tl_tbox" style="text-align:center;margin-top:12px">
+        <a href="{{ svgUrl }}" class="tl_submit">{{ 'MSC.shortlinkQrCode.svg'|trans }}</a>
+        {% if pngUrl is defined %}<a href="{{ pngUrl }}" class="tl_submit">{{ 'MSC.shortlinkQrCode.png'|trans }}</a>{% endif %}
+    </div>
+</div>

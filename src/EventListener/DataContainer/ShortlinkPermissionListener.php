@@ -32,7 +32,7 @@ class ShortlinkPermissionListener
             $GLOBALS['TL_DCA'][self::TABLE]['list']['global_operations']['all'],
             $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['edit'],
             $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['copy'],
-            $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['delete']
+            $GLOBALS['TL_DCA'][self::TABLE]['list']['operations']['delete'],
         );
     }
 }

@@ -63,6 +63,10 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
                 'href' => 'act=show',
                 'icon' => 'show.svg',
             ],
+            'qrCode' => [
+                'href' => 'key=qrCode',
+                'icon' => 'bundles/terminal42shortlink/icon-qr.svg',
+            ],
         ],
     ],
 
