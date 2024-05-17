@@ -30,6 +30,7 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
         $container
             ->getDefinition(ShortlinkGenerator::class)
             ->setArgument(2, $config['host'])
+            ->setArgument(3, $config['prefix'])
         ;
 
         $container
@@ -40,7 +41,8 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
         $container
             ->getDefinition('terminal42_shortlink.routing.route_provider')
             ->setArgument(2, $config['host'])
-            ->setArgument(3, $config['catchall_redirect'])
+            ->setArgument(3, $config['prefix'])
+            ->setArgument(4, $config['catchall_redirect'])
         ;
     }
 }

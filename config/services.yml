@@ -35,6 +35,7 @@ services:
             - '@terminal42_shortlink.hashids'
             - '@router.request_context'
             - ~
+            - ~
 
     Terminal42\ShortlinkBundle\EventListener\InsertTagsListener:
         arguments:
@@ -92,6 +93,7 @@ services:
         arguments:
             - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
             - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
+            - ~
             - ~
             - ~
 

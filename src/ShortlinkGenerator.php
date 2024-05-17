@@ -13,6 +13,7 @@ class ShortlinkGenerator
         private readonly Hashids $hashids,
         private readonly RequestContext $requestContext,
         private readonly string $host,
+        private readonly string $prefix,
     ) {
     }
 
@@ -27,6 +28,6 @@ class ShortlinkGenerator
             $alias = $this->hashids->encode($id);
         }
 
-        return '/'.ltrim($alias, '/');
+        return '/'.ltrim($this->prefix, '/').ltrim($alias, '/');
     }
 }

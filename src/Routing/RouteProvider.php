@@ -21,17 +21,21 @@ class RouteProvider implements RouteProviderInterface
         private readonly ShortlinkRepository $repository,
         private readonly ShortlinkGenerator $shortlinkGenerator,
         private readonly string $host,
+        private readonly string $prefix,
         private readonly string|null $catchallRedirect,
     ) {
     }
 
     public function getRouteCollectionForRequest(Request $request): RouteCollection
     {
-        if ($this->host && $request->getHost() !== $this->host) {
+        if (
+            ($this->host && $request->getHost() !== $this->host)
+            || !str_starts_with($request->getPathInfo(), '/'.$this->prefix)
+        ) {
             return new RouteCollection();
         }
 
-        $alias = substr($request->getPathInfo(), 1);
+        $alias = substr($request->getPathInfo(), strlen($this->prefix) + 1);
         $links = $this->repository->findRouteCandidatesByAlias($alias);
         $collection = new RouteCollection();
 

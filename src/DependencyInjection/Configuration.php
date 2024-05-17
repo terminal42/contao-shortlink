@@ -16,6 +16,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('host')->defaultValue('')->end()
+                ->scalarNode('prefix')->defaultValue('')->end()
                 ->scalarNode('catchall_redirect')
                     ->defaultNull()
                     ->validate()
