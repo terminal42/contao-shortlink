@@ -49,7 +49,10 @@ class Shortlink
     #[Column(nullable: false, options: ['unsigned' => true, 'default' => 0])]
     private int $dateAdded;
 
-    #[OneToMany(targetEntity: ShortlinkLog::class, mappedBy: 'shortlink', fetch: 'EXTRA_LAZY', cascade: ['persist', 'remove'])]
+    /**
+     * @var Collection<int, ShortlinkLog>
+     */
+    #[OneToMany(mappedBy: 'shortlink', targetEntity: ShortlinkLog::class, cascade: ['persist', 'remove'], fetch: 'EXTRA_LAZY')]
     private Collection $logs;
 
     public function __construct()

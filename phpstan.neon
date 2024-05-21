@@ -1,0 +1,4 @@
+parameters:
+    ignoreErrors:
+        - '#Access to an undefined property Contao\\DataContainer::\$activeRecord.#'
+        - '#is never written, only read.#'

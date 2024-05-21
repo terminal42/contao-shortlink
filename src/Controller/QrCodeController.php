@@ -66,7 +66,7 @@ class QrCodeController
         $backend = match ($format) {
             'svg' => new SvgImageBackEnd(),
             'png' => new ImagickImageBackEnd(),
-            default => throw new \RuntimeException('Unknown QR code format "'.$format.'"')
+            default => throw new \RuntimeException('Unknown QR code format "'.$format.'"'),
         };
 
         $renderer = new ImageRenderer(new RendererStyle(400, 0), $backend);

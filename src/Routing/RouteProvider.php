@@ -35,7 +35,7 @@ class RouteProvider implements RouteProviderInterface
             return new RouteCollection();
         }
 
-        $alias = substr($request->getPathInfo(), strlen($this->prefix) + 1);
+        $alias = substr($request->getPathInfo(), \strlen($this->prefix) + 1);
         $links = $this->repository->findRouteCandidatesByAlias($alias);
         $collection = new RouteCollection();
 
@@ -68,6 +68,8 @@ class RouteProvider implements RouteProviderInterface
 
     /**
      * Do not add argument type for compatibility with Contao 4.13.
+     *
+     * @param string $name
      */
     public function getRouteByName(/* string */ $name): Route
     {
@@ -76,6 +78,8 @@ class RouteProvider implements RouteProviderInterface
 
     /**
      * Do not add argument type for compatibility with Contao 4.13.
+     *
+     * @param array|null $names
      */
     public function getRoutesByNames(/* array|null */ $names = null): array
     {

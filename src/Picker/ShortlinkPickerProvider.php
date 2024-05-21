@@ -17,6 +17,8 @@ class ShortlinkPickerProvider extends AbstractInsertTagPickerProvider implements
 
     /**
      * Do not declare argument type for compatibility with Contao 4.13.
+     *
+     * @param string $context
      */
     public function supportsContext(/* string */ $context): bool
     {
