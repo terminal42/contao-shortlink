@@ -17,4 +17,5 @@ return (new Configuration())
     ->ignoreErrorsOnPackage('symfony/http-kernel', [ErrorType::SHADOW_DEPENDENCY])
     ->ignoreErrorsOnPackage('symfony/routing', [ErrorType::SHADOW_DEPENDENCY])
     ->ignoreErrorsOnPackage('symfony/security-core', [ErrorType::SHADOW_DEPENDENCY])
+    ->ignoreErrorsOnPackage('symfony/translation-contracts', [ErrorType::SHADOW_DEPENDENCY])
 ;

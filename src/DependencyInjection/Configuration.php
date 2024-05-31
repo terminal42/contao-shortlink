@@ -21,7 +21,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('catchall_redirect')
                     ->defaultNull()
                     ->validate()
-                        ->ifTrue(static fn (string $v) => !preg_match('{^https?://}i', $v))
+                        ->ifTrue(static fn (string $v): bool => !preg_match('{^https?://}i', $v))
                         ->thenInvalid('The catchall_redirect must be an absolute URL (starting with http:// or https://)')
                     ->end()
                 ->end()

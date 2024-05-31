@@ -12,6 +12,9 @@ use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 #[AsCallback(table: 'tl_terminal42_shortlink', target: 'list.label.label')]
 class ShortlinkLabelListener
 {
+    /**
+     * @var array<int, int>|null
+     */
     private array|null $counts = null;
 
     public function __construct(
@@ -20,6 +23,12 @@ class ShortlinkLabelListener
     ) {
     }
 
+    /**
+     * @param array<mixed>  $row
+     * @param array<string> $columns
+     *
+     * @return array<string>
+     */
     public function __invoke(array $row, string $label, DataContainer $dc, array $columns): array
     {
         foreach ($GLOBALS['TL_DCA']['tl_terminal42_shortlink']['list']['label']['fields'] as $k => $field) {

@@ -79,7 +79,9 @@ class RouteProvider implements RouteProviderInterface
     /**
      * Do not add argument type for compatibility with Contao 4.13.
      *
-     * @param array|null $names
+     * @param array<string>|null $names
+     *
+     * @return array<string, Route>
      */
     public function getRoutesByNames(/* array|null */ $names = null): array
     {

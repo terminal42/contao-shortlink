@@ -14,7 +14,10 @@ use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 class Terminal42ShortlinkExtension extends ConfigurableExtension
 {
-    public function loadInternal(array $config, ContainerBuilder $container): void
+    /**
+     * @param array<string, mixed> $mergedConfig
+     */
+    public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(
             $container,
@@ -25,31 +28,31 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
 
         $container
             ->getDefinition(ShortlinkController::class)
-            ->setArgument(2, (bool) $config['log_ip'])
+            ->setArgument(2, (bool) $mergedConfig['log_ip'])
         ;
 
         $container
             ->getDefinition(ShortlinkGenerator::class)
-            ->setArgument(3, $config['host'])
-            ->setArgument(4, $config['prefix'])
+            ->setArgument(3, $mergedConfig['host'])
+            ->setArgument(4, $mergedConfig['prefix'])
         ;
 
         $container
             ->getDefinition('terminal42_shortlink.hashids')
-            ->setArgument(0, $config['salt'])
-            ->setArgument(1, $config['min_length'])
+            ->setArgument(0, $mergedConfig['salt'])
+            ->setArgument(1, $mergedConfig['min_length'])
         ;
 
         $container
             ->getDefinition(ShortlinkAliasListener::class)
-            ->setArgument(1, $config['min_length'])
+            ->setArgument(1, $mergedConfig['min_length'])
         ;
 
         $container
             ->getDefinition('terminal42_shortlink.routing.route_provider')
-            ->setArgument(2, $config['host'])
-            ->setArgument(3, $config['prefix'])
-            ->setArgument(4, $config['catchall_redirect'])
+            ->setArgument(2, $mergedConfig['host'])
+            ->setArgument(3, $mergedConfig['prefix'])
+            ->setArgument(4, $mergedConfig['catchall_redirect'])
         ;
     }
 }
