@@ -32,6 +32,7 @@ composer installed globally.
 terminal42_shortlink:
     host: ~
     prefix: ~
+    min_length: 0
     catchall_redirect: ~
     salt: terminal42_shortlink
     log_ip: false
@@ -41,6 +42,13 @@ terminal42_shortlink:
     but make sure it is set up on your hosting/server.
 
 - **prefix:** Optionally configure a prefix, e.g. `go/` to generate with all shortlinks.
+
+- **min_length:** Minimum lengths of shortlinks. Applies to the generated hash ID as well 
+    as to the alias input in the back end. 
+
+    This can be useful if you want to use the same domain for shortlinks and a regular website.
+    By setting the shortlink length to something higher than the root page URL prefix, you
+    can make sure there's never a conflict between a shortlink and the regular website.
 
 - **catchall_redirect:** If you configure a host exclusively for shortlinks, you can
     redirect all unknown requests to a URL (e.g. your regular website). 
