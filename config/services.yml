@@ -17,6 +17,10 @@ services:
         tags:
             - { name: controller.service_arguments }
 
+    Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkAliasListener:
+        arguments:
+            - '@translator'
+
     Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkLabelListener:
         arguments:
             - '@database_connection'

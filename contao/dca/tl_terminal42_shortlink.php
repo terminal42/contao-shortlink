@@ -89,7 +89,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
             'sorting' => true,
             'search' => true,
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'url', 'unique' => true, 'maxlength' => 128, 'tl_class' => 'w50'],
+            'eval' => ['rgxp' => 'alias', 'unique' => true, 'maxlength' => 128, 'tl_class' => 'w50'],
         ],
         'name' => [
             'exclude' => true,

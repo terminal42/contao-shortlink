@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use Terminal42\ShortlinkBundle\Controller\ShortlinkController;
+use Terminal42\ShortlinkBundle\EventListener\DataContainer\ShortlinkAliasListener;
 use Terminal42\ShortlinkBundle\ShortlinkGenerator;
 
 class Terminal42ShortlinkExtension extends ConfigurableExtension
@@ -36,6 +37,12 @@ class Terminal42ShortlinkExtension extends ConfigurableExtension
         $container
             ->getDefinition('terminal42_shortlink.hashids')
             ->setArgument(0, $config['salt'])
+            ->setArgument(1, $config['min_length'])
+        ;
+
+        $container
+            ->getDefinition(ShortlinkAliasListener::class)
+            ->setArgument(1, $config['min_length'])
         ;
 
         $container

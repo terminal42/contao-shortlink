@@ -17,6 +17,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('host')->defaultValue('')->end()
                 ->scalarNode('prefix')->defaultValue('')->end()
+                ->integerNode('min_length')->defaultValue(0)->end()
                 ->scalarNode('catchall_redirect')
                     ->defaultNull()
                     ->validate()

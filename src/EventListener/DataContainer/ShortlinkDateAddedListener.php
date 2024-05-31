@@ -17,13 +17,8 @@ class ShortlinkDateAddedListener
     {
     }
 
-    public function __invoke(mixed $dc): void
+    public function __invoke(DataContainer $dc): void
     {
-        // Front end call
-        if (!$dc instanceof DataContainer) {
-            return;
-        }
-
         // Return if there is no active record (override all)
         if (!$dc->activeRecord || $dc->activeRecord->dateAdded > 0) {
             return;
