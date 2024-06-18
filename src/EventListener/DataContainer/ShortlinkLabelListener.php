@@ -39,12 +39,14 @@ class ShortlinkLabelListener
                     break;
 
                 case 'target':
-                    $targetUrl = $this->generator->generateTargetUrl($row['target']);
-                    $columns[$k] = sprintf(
-                        '<a href="%s" target="_blank">%s</a>',
-                        $targetUrl,
-                        $row['name'] ?: $targetUrl,
-                    );
+                    if ($row['target']) {
+                        $targetUrl = $this->generator->generateTargetUrl($row['target']);
+                        $columns[$k] = sprintf(
+                            '<a href="%s" target="_blank">%s</a>',
+                            $targetUrl,
+                            $row['name'] ?: $targetUrl,
+                        );
+                    }
                     break;
 
                 case 'log':
