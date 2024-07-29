@@ -12,6 +12,7 @@ use BaconQrCode\Writer;
 use Contao\Backend;
 use Contao\BackendTemplate;
 use Contao\CoreBundle\Exception\ResponseException;
+use Contao\CoreBundle\Slug\Slug;
 use Contao\Input;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,7 @@ class QrCodeController
     public function __construct(
         private readonly ShortlinkRepository $repository,
         private readonly ShortlinkGenerator $generator,
+        private readonly Slug $slug,
     ) {
     }
 
@@ -62,7 +64,6 @@ class QrCodeController
 
     private function download(Shortlink $shortlink, string $format): never
     {
-        $filename = ($shortlink->getName() ?: 'qrcode').'.'.$format;
         $backend = match ($format) {
             'svg' => new SvgImageBackEnd(),
             'png' => new ImagickImageBackEnd(),
@@ -72,10 +73,13 @@ class QrCodeController
         $renderer = new ImageRenderer(new RendererStyle(400, 0), $backend);
         $writer = new Writer($renderer);
 
+        $filename = ($shortlink->getName() ?: 'qrcode');
+
         $response = new Response($writer->writeString($this->generateUrl($shortlink)));
         $response->headers->set('Content-Disposition', HeaderUtils::makeDisposition(
             HeaderUtils::DISPOSITION_ATTACHMENT,
-            $filename,
+            $filename.'.'.$format,
+            $this->slug->generate($filename).'.'.$format,
         ));
 
         throw new ResponseException($response);

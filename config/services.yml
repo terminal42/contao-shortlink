@@ -6,6 +6,7 @@ services:
         arguments:
             - '@Terminal42\ShortlinkBundle\Repository\ShortlinkRepository'
             - '@Terminal42\ShortlinkBundle\ShortlinkGenerator'
+            - '@contao.slug'
         tags:
             - { name: controller.service_arguments }
 
