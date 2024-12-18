@@ -6,20 +6,20 @@ namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Security\ContaoCorePermissions;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 #[AsCallback(table: 'tl_terminal42_shortlink', target: 'config.onload')]
 class ShortlinkPermissionListener
 {
     private const TABLE = 'tl_terminal42_shortlink';
 
-    public function __construct(private readonly Security $security)
+    public function __construct(private readonly AuthorizationCheckerInterface $authorizationChecker)
     {
     }
 
     public function __invoke(): void
     {
-        if ($this->security->isGranted(ContaoCorePermissions::USER_CAN_EDIT_FIELDS_OF_TABLE, self::TABLE)) {
+        if ($this->authorizationChecker->isGranted(ContaoCorePermissions::USER_CAN_EDIT_FIELDS_OF_TABLE, self::TABLE)) {
             return;
         }
 
