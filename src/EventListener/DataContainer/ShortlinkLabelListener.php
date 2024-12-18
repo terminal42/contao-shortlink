@@ -35,13 +35,13 @@ class ShortlinkLabelListener
             switch ($field) {
                 case 'alias':
                     $url = $this->generator->generate((int) $row['id'], $row['alias'] ?? null);
-                    $columns[$k] = sprintf('<a href="%s" target="_blank">%s</a>', $url, preg_replace('/^https?:\/\//', '', $url));
+                    $columns[$k] = \sprintf('<a href="%s" target="_blank">%s</a>', $url, preg_replace('/^https?:\/\//', '', $url));
                     break;
 
                 case 'target':
                     if ($row['target']) {
                         $targetUrl = $this->generator->generateTargetUrl($row['target']);
-                        $columns[$k] = sprintf(
+                        $columns[$k] = \sprintf(
                             '<a href="%s" target="_blank">%s</a>',
                             $targetUrl,
                             $row['name'] ?: $targetUrl,
