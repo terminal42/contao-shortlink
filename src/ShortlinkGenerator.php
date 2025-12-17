@@ -39,7 +39,7 @@ class ShortlinkGenerator
             return $target;
         }
 
-        $target = preg_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1|absolute}}', $target);
+        $target = preg_replace('/{{(link(::|_[^:]+::)[^|}]+)}}/i', '{{$1::absolute}}', $target);
 
         return $this->insertTagParser->replace($target);
     }
