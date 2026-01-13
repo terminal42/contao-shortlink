@@ -31,7 +31,8 @@
         "composer/semver": "*",
         "contao/core-bundle": "^4.13 || ^5.0",
         "hashids/hashids": "^3.0 || ^4.1",
-        "bacon/bacon-qr-code": "^2.0 || ^3.0"
+        "bacon/bacon-qr-code": "^2.0 || ^3.0",
+        "symfony/deprecation-contracts": "^2.0 || ^3.0"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",

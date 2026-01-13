@@ -1,5 +1,6 @@
 <?php
 
+use Contao\DataContainer;
 use Contao\DC_Table;
 
 $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
@@ -13,9 +14,9 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
     // List
     'list' => [
         'sorting' => [
-            'mode' => 2,
+            'mode' => DataContainer::MODE_SORTABLE,
             'fields' => ['target DESC'],
-            'flag' => 1,
+            'flag' => DataContainer::SORT_INITIAL_LETTER_ASC,
             'panelLayout' => 'filter;sort,search,limit',
         ],
         'label' => [
@@ -106,7 +107,7 @@ $GLOBALS['TL_DCA']['tl_terminal42_shortlink'] = [
         'dateAdded' => [
             'default' => time(),
             'sorting' => true,
-            'flag' => 6,
+            'flag' => DataContainer::SORT_DAY_DESC,
             'eval' => ['rgxp' => 'datim', 'doNotCopy' => true],
         ],
         'log' => [

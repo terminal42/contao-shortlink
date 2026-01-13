@@ -30,7 +30,7 @@ class ShortlinkDateAddedListener
             ->where('id=:id')
             ->setParameter('time', time())
             ->setParameter('id', $dc->id)
-            ->execute()
+            ->executeStatement()
         ;
     }
 }
