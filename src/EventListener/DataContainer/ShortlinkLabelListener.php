@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Terminal42\ShortlinkBundle\EventListener\DataContainer;
 
+use Contao\CoreBundle\DataContainer\RecordLabel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Doctrine\DBAL\Connection;
@@ -27,9 +28,9 @@ class ShortlinkLabelListener
      * @param array<mixed>  $row
      * @param array<string> $columns
      *
-     * @return array<string>
+     * @return RecordLabel|array<string>
      */
-    public function __invoke(array $row, string $label, DataContainer $dc, array $columns): array
+    public function __invoke(array $row, string $label, DataContainer $dc, array $columns): RecordLabel|array
     {
         foreach ($GLOBALS['TL_DCA']['tl_terminal42_shortlink']['list']['label']['fields'] as $k => $field) {
             switch ($field) {
@@ -53,6 +54,10 @@ class ShortlinkLabelListener
                     $columns[$k] = $this->getLogCount((int) $row['id']);
                     break;
             }
+        }
+
+        if (class_exists(RecordLabel::class)) {
+            return RecordLabel::fromHtml($columns);
         }
 
         return $columns;
