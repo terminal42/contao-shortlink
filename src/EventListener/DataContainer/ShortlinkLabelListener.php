@@ -65,11 +65,9 @@ class ShortlinkLabelListener
 
     private function getLogCount(int $id): int
     {
-        if (null === $this->counts) {
-            $this->counts = $this->connection->fetchAllKeyValue(
-                'SELECT s.id, COUNT(l.id) FROM tl_terminal42_shortlink s LEFT JOIN tl_terminal42_shortlink_log l ON l.pid=s.id GROUP BY s.id',
-            );
-        }
+        $this->counts ??= $this->connection->fetchAllKeyValue(
+            'SELECT s.id, COUNT(l.id) FROM tl_terminal42_shortlink s LEFT JOIN tl_terminal42_shortlink_log l ON l.pid=s.id GROUP BY s.id',
+        );
 
         return (int) ($this->counts[$id] ?? 0);
     }

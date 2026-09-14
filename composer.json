@@ -32,7 +32,22 @@
         "contao/core-bundle": "^4.13 || ^5.0 || ^6.0",
         "hashids/hashids": "^3.0 || ^4.1",
         "bacon/bacon-qr-code": "^2.0 || ^3.0",
-        "symfony/deprecation-contracts": "^2.0 || ^3.0"
+        "symfony/deprecation-contracts": "^2.0 || ^3.0",
+
+        "doctrine/collections": "^1.5 || ^2.0 || ^3.0",
+        "doctrine/dbal": "^3.3 || ^4.0",
+        "doctrine/doctrine-bundle": "^2.4 || ^3.0",
+        "doctrine/orm": "^2.10 || ^3.0",
+        "doctrine/persistence": "^2.0 || ^3.0 || ^4.0",
+        "symfony-cmf/routing": "^2.3 || ^3.0",
+        "symfony/config": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/http-foundation": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/routing": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/security-core": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+        "symfony/translation-contracts": "^2.0 || ^3.0"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0",
